@@ -1,0 +1,37 @@
+aid: spot-by-netapp
+name: Spot by NetApp
+description: >-
+  Spot by NetApp is a cloud infrastructure optimization platform providing
+  automated cost optimization, scaling, and management for cloud workloads.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - FinOps
+  - Cloud Optimization
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: spot-by-netapp:spot-by-netapp
+    name: Spot by NetApp
+    description: >-
+      Spot by NetApp is a cloud infrastructure optimization platform providing
+      automated cost optimization, scaling, and management for cloud workloads.
+    humanURL: https://spot.io/
+    tags:
+      - FinOps
+    properties:
+      - type: Documentation
+        url: https://docs.spot.io/
+      - type: Getting Started
+        url: https://docs.spot.io/
+common:
+  - type: Website
+    url: https://spot.io/
+  - type: Documentation
+    url: https://docs.spot.io/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
