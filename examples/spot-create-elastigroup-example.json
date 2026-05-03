@@ -1,0 +1,82 @@
+{
+  "name": "Create Elastigroup AWS",
+  "description": "Example request and response for creating a new Elastigroup on AWS with Spot instance optimization",
+  "request": {
+    "method": "POST",
+    "url": "https://api.spotinst.io/aws/ec2/group",
+    "headers": {
+      "Authorization": "Bearer your_spot_api_token_here",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "group": {
+        "name": "web-servers-prod",
+        "description": "Production web server Elastigroup",
+        "region": "us-east-1",
+        "capacity": {
+          "minimum": 2,
+          "maximum": 20,
+          "target": 5
+        },
+        "strategy": {
+          "risk": 80,
+          "availabilityVsCost": "balanced",
+          "fallbackToOnDemand": true,
+          "utilizeReservedInstances": true
+        },
+        "compute": {
+          "instanceTypes": {
+            "ondemand": "m5.large",
+            "spot": ["m5.large", "m4.large", "m5a.large", "m5d.large", "r5.large"]
+          },
+          "launchSpecification": {
+            "imageId": "ami-0abcdef1234567890",
+            "keyPair": "my-key-pair",
+            "securityGroupIds": ["sg-0123456789abcdef0"],
+            "userData": "IyEvYmluL2Jhc2gKZWNobyAiSGVsbG8gV29ybGQi"
+          },
+          "availabilityZones": [
+            {"name": "us-east-1a", "subnetId": "subnet-0123456789abcdef0"},
+            {"name": "us-east-1b", "subnetId": "subnet-0abcdef1234567890"},
+            {"name": "us-east-1c", "subnetId": "subnet-0fedcba9876543210"}
+          ]
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request": {
+        "id": "b4e33d3b-4a5b-4c8c-a2f3-9b6e2e2e4c5a",
+        "url": "/aws/ec2/group",
+        "method": "POST",
+        "timestamp": "2026-05-02T10:00:00Z",
+        "isFinished": true
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "items": [
+          {
+            "id": "sig-12345abc",
+            "name": "web-servers-prod",
+            "description": "Production web server Elastigroup",
+            "region": "us-east-1",
+            "capacity": {
+              "minimum": 2,
+              "maximum": 20,
+              "target": 5
+            },
+            "createdAt": "2026-05-02T10:00:00Z",
+            "updatedAt": "2026-05-02T10:00:00Z"
+          }
+        ],
+        "count": 1,
+        "kind": "spotinst:aws:ec2:group"
+      }
+    }
+  }
+}

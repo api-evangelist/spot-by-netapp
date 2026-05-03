@@ -1,0 +1,83 @@
+{
+  "name": "Spot by NetApp API Structure",
+  "description": "JSON structure documentation for Spot by NetApp cloud optimization API resources",
+  "version": "1.0",
+  "structures": [
+    {
+      "name": "ElastigroupAWS",
+      "description": "Intelligent auto-scaling group using Spot instances on AWS",
+      "fields": [
+        {"name": "id", "type": "string", "required": false, "description": "Unique Elastigroup identifier (assigned on creation)"},
+        {"name": "name", "type": "string", "required": true, "description": "Descriptive name (max 36 characters)"},
+        {"name": "description", "type": "string", "required": false, "description": "Optional description"},
+        {"name": "region", "type": "string", "required": true, "description": "AWS region (e.g., us-east-1, eu-west-1)"},
+        {"name": "capacity", "type": "Capacity object", "required": true, "description": "Min/max/target instance counts"},
+        {"name": "strategy", "type": "Strategy object", "required": false, "description": "Spot vs On-Demand balance strategy"},
+        {"name": "compute", "type": "Compute object", "required": true, "description": "Instance types and launch configuration"},
+        {"name": "scaling", "type": "Scaling object", "required": false, "description": "Auto-scaling policy configuration"},
+        {"name": "scheduling", "type": "Scheduling object", "required": false, "description": "Scheduled scaling actions"},
+        {"name": "createdAt", "type": "string (ISO 8601)", "required": false, "description": "Creation timestamp"},
+        {"name": "updatedAt", "type": "string (ISO 8601)", "required": false, "description": "Last update timestamp"}
+      ]
+    },
+    {
+      "name": "Capacity",
+      "description": "Instance count bounds for an Elastigroup or Ocean cluster",
+      "fields": [
+        {"name": "minimum", "type": "integer", "required": true, "description": "Minimum number of instances (>= 0)"},
+        {"name": "maximum", "type": "integer", "required": true, "description": "Maximum number of instances"},
+        {"name": "target", "type": "integer", "required": true, "description": "Desired instance count"},
+        {"name": "unit", "type": "string enum", "required": false, "description": "Unit type: instance | weight"}
+      ]
+    },
+    {
+      "name": "Strategy",
+      "description": "Spot instance usage and fallback strategy",
+      "fields": [
+        {"name": "risk", "type": "integer (0-100)", "required": false, "description": "Percentage of Spot instances target"},
+        {"name": "onDemandCount", "type": "integer", "required": false, "description": "Fixed On-Demand instance count"},
+        {"name": "availabilityVsCost", "type": "string enum", "required": false, "description": "balanced | availabilityOriented | costOriented"},
+        {"name": "fallbackToOnDemand", "type": "boolean", "required": false, "description": "Fall back to On-Demand when Spot unavailable"},
+        {"name": "utilizeReservedInstances", "type": "boolean", "required": false, "description": "Use Reserved Instances before Spot"}
+      ]
+    },
+    {
+      "name": "OceanCluster",
+      "description": "Kubernetes cost optimization cluster using Spot instances",
+      "fields": [
+        {"name": "id", "type": "string", "required": false, "description": "Unique Ocean cluster identifier"},
+        {"name": "name", "type": "string", "required": true, "description": "Cluster name"},
+        {"name": "region", "type": "string", "required": true, "description": "Cloud provider region"},
+        {"name": "cloudProvider", "type": "string enum", "required": true, "description": "Cloud provider: aws | azure | gcp"},
+        {"name": "autoScaler", "type": "AutoScaler object", "required": false, "description": "Auto-scaling configuration"},
+        {"name": "capacity", "type": "Capacity object", "required": false, "description": "Node count bounds"},
+        {"name": "compute", "type": "Compute object", "required": false, "description": "Node instance type configuration"}
+      ]
+    },
+    {
+      "name": "CostSavings",
+      "description": "Cloud cost savings report from Spot optimization",
+      "fields": [
+        {"name": "actualCost", "type": "number", "required": true, "description": "Actual spend with Spot optimization"},
+        {"name": "potentialCost", "type": "number", "required": true, "description": "Estimated cost without optimization"},
+        {"name": "savings", "type": "number", "required": true, "description": "Absolute cost savings amount"},
+        {"name": "savingsPercentage", "type": "number", "required": true, "description": "Percentage saved vs. unoptimized"},
+        {"name": "currency", "type": "string", "required": false, "description": "Currency code (default: USD)"}
+      ]
+    },
+    {
+      "name": "AuditEvent",
+      "description": "An audit log entry recording API or console activity",
+      "fields": [
+        {"name": "id", "type": "string", "required": true, "description": "Unique audit event ID"},
+        {"name": "eventType", "type": "string", "required": true, "description": "Type of action performed"},
+        {"name": "resourceType", "type": "string", "required": true, "description": "Type of resource affected"},
+        {"name": "resourceId", "type": "string", "required": false, "description": "ID of the affected resource"},
+        {"name": "accountId", "type": "string", "required": true, "description": "Spot account where event occurred"},
+        {"name": "userId", "type": "string", "required": true, "description": "User who performed the action"},
+        {"name": "timestamp", "type": "string (ISO 8601)", "required": true, "description": "When the event occurred"},
+        {"name": "data", "type": "object", "required": false, "description": "Event-specific payload data"}
+      ]
+    }
+  ]
+}

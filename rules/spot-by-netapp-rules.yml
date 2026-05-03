@@ -1,0 +1,110 @@
+extends: spectral:oas
+rules:
+  # Spot by NetApp API-specific conventions
+
+  spot-bearer-auth:
+    description: Spot API must use Bearer token authentication.
+    message: "API must define BearerAuth security scheme using HTTP Bearer scheme."
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: BearerAuth
+      function: truthy
+
+  spot-response-envelope:
+    description: Spot API responses should use the request/response envelope pattern.
+    message: "GET responses should include a response object wrapping the result items."
+    severity: warn
+    given: "$.paths[*].get.responses.200.content.application/json.schema"
+    then:
+      field: properties.response
+      function: truthy
+
+  spot-cloud-path-prefix:
+    description: Cloud provider paths should be prefixed with the provider name.
+    message: "Path '{{property}}' for cloud providers should be prefixed with /aws/, /azure/, or /gcp/."
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^\\/(aws|azure|gcp|ocean|setup|audit|events|healthCheck|insights|connect|security|cbi|cloudBilling|mcs|notificationCenter)\\/.*"
+
+  spot-operation-id:
+    description: All operations must have an operationId.
+    message: "Operation must have an operationId."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  spot-operation-id-camel-case:
+    description: OperationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: error
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  spot-operation-tags:
+    description: All operations must have at least one tag.
+    message: "Operation must have at least one tag."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  spot-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  spot-account-id-param:
+    description: Operations that are account-scoped should accept an accountId query parameter.
+    message: "Account-scoped list operations should accept an accountId query parameter."
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      field: parameters
+      function: truthy
+
+  spot-200-response:
+    description: All operations must define a 200 response.
+    message: "Operation must define a 200 response."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: responses.200
+      function: truthy
+
+  spot-401-response:
+    description: Operations should document the 401 unauthorized response.
+    message: "Operation should define a 401 response."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: responses.401
+      function: truthy
+
+  spot-server-production:
+    description: API must define the Spot production server URL.
+    message: "API must use https://api.spotinst.io as the production server."
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.spotinst\\.io$"

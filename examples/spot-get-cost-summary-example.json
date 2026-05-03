@@ -1,0 +1,45 @@
+{
+  "name": "Get Cost Savings Summary",
+  "description": "Example request and response for retrieving cloud cost savings achieved through Spot optimization",
+  "request": {
+    "method": "GET",
+    "url": "https://api.spotinst.io/insights/summary",
+    "headers": {
+      "Authorization": "Bearer your_spot_api_token_here"
+    },
+    "parameters": {
+      "accountId": "act-12345abc",
+      "fromDate": "2026-04-01",
+      "toDate": "2026-04-30"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request": {
+        "id": "a1b2c3d4-1234-5678-90ab-cdef12345678",
+        "url": "/insights/summary",
+        "method": "GET",
+        "timestamp": "2026-05-02T10:00:00Z",
+        "isFinished": true
+      },
+      "response": {
+        "status": {
+          "code": 200,
+          "message": "OK"
+        },
+        "items": [
+          {
+            "actualCost": 12450.75,
+            "potentialCost": 41502.50,
+            "savings": 29051.75,
+            "savingsPercentage": 70.0,
+            "currency": "USD"
+          }
+        ],
+        "count": 1,
+        "kind": "spotinst:insights:summary"
+      }
+    }
+  }
+}

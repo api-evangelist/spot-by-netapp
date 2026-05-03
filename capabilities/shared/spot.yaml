@@ -1,0 +1,480 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Spot by NetApp API"
+  description: >-
+    Cloud infrastructure optimization platform API for managing Elastigroup auto-scaling,
+    Ocean Kubernetes cost optimization, Stateful Nodes, cost analysis, and audit logging
+    across AWS, Azure, and GCP using Spot/Preemptible instances.
+  tags:
+    - Cloud Optimization
+    - FinOps
+    - Kubernetes
+    - AWS
+    - Azure
+    - GCP
+    - Auto Scaling
+    - Cost Management
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SPOT_API_TOKEN: SPOT_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: spot
+      baseUri: https://api.spotinst.io
+      description: "Spot by NetApp REST API for cloud optimization"
+      authentication:
+        type: bearer
+        token: "{{SPOT_API_TOKEN}}"
+      resources:
+        - name: elastigroup-aws
+          path: /aws/ec2/group
+          description: "AWS Elastigroup management"
+          operations:
+            - name: list-elastigroups-aws
+              method: GET
+              description: "List all AWS Elastigroups"
+              inputParameters:
+                - name: accountId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Spot account ID filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-elastigroup-aws
+              method: POST
+              description: "Create a new AWS Elastigroup with Spot optimization"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  group: "{{tools.group}}"
+
+        - name: elastigroup-aws-by-id
+          path: /aws/ec2/group/{groupId}
+          description: "Individual AWS Elastigroup operations"
+          operations:
+            - name: get-elastigroup-aws
+              method: GET
+              description: "Get AWS Elastigroup by ID"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-elastigroup-aws
+              method: PUT
+              description: "Update AWS Elastigroup configuration"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-elastigroup-aws
+              method: DELETE
+              description: "Delete an AWS Elastigroup"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: elastigroup-aws-status
+          path: /aws/ec2/group/{groupId}/status
+          description: "AWS Elastigroup instance status"
+          operations:
+            - name: get-elastigroup-status
+              method: GET
+              description: "Get instance status for an Elastigroup"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: elastigroup-aws-costs
+          path: /aws/ec2/group/{groupId}/costs
+          description: "AWS Elastigroup cost analysis"
+          operations:
+            - name: get-elastigroup-costs
+              method: GET
+              description: "Get cost and savings analysis for an Elastigroup"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+                - name: fromDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date (ISO 8601)"
+                - name: toDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "End date (ISO 8601)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: elastigroup-aws-scale-up
+          path: /aws/ec2/group/{groupId}/scale/up
+          description: "Scale up an AWS Elastigroup"
+          operations:
+            - name: scale-up-elastigroup
+              method: PUT
+              description: "Add capacity to an AWS Elastigroup"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+                - name: adjustment
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Number of instances to add"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: elastigroup-aws-scale-down
+          path: /aws/ec2/group/{groupId}/scale/down
+          description: "Scale down an AWS Elastigroup"
+          operations:
+            - name: scale-down-elastigroup
+              method: PUT
+              description: "Remove capacity from an AWS Elastigroup"
+              inputParameters:
+                - name: groupId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Elastigroup ID"
+                - name: adjustment
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Number of instances to remove"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: ocean-aws-cluster
+          path: /ocean/aws/k8s/cluster
+          description: "Ocean Kubernetes cluster management on AWS"
+          operations:
+            - name: list-ocean-clusters-aws
+              method: GET
+              description: "List all Ocean clusters on AWS"
+              inputParameters:
+                - name: accountId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Spot account ID filter"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-ocean-cluster-aws
+              method: POST
+              description: "Create an Ocean Kubernetes cluster on AWS"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  cluster: "{{tools.cluster}}"
+
+        - name: ocean-aws-cluster-by-id
+          path: /ocean/aws/k8s/cluster/{clusterId}
+          description: "Individual Ocean cluster operations"
+          operations:
+            - name: get-ocean-cluster-aws
+              method: GET
+              description: "Get Ocean cluster details"
+              inputParameters:
+                - name: clusterId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Ocean cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-ocean-cluster-aws
+              method: PUT
+              description: "Update Ocean cluster configuration"
+              inputParameters:
+                - name: clusterId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Ocean cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-ocean-cluster-aws
+              method: DELETE
+              description: "Delete an Ocean cluster"
+              inputParameters:
+                - name: clusterId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Ocean cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: ocean-cluster-costs
+          path: /ocean/aws/k8s/cluster/{clusterId}/costs
+          description: "Ocean cluster cost and savings data"
+          operations:
+            - name: get-ocean-cluster-costs
+              method: GET
+              description: "Get cost breakdown and savings for an Ocean cluster"
+              inputParameters:
+                - name: clusterId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Ocean cluster ID"
+                - name: startTime
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start time (ISO 8601)"
+                - name: endTime
+                  in: query
+                  type: string
+                  required: false
+                  description: "End time (ISO 8601)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: rightsizing
+          path: /ocean/aws/k8s/cluster/{clusterId}/rightSizing/suggestions
+          description: "Container rightsizing recommendations"
+          operations:
+            - name: get-rightsizing-suggestions
+              method: GET
+              description: "Get container rightsizing recommendations to reduce waste and cost"
+              inputParameters:
+                - name: clusterId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Ocean cluster ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: accounts
+          path: /setup/account
+          description: "Spot account management"
+          operations:
+            - name: list-accounts
+              method: GET
+              description: "List all Spot accounts"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-account
+              method: POST
+              description: "Create a new Spot account"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  account: "{{tools.account}}"
+
+        - name: audit-log
+          path: /audit/log
+          description: "Audit log for account activity"
+          operations:
+            - name: get-audit-log
+              method: GET
+              description: "Retrieve audit log events for account activity"
+              inputParameters:
+                - name: accountId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Account ID filter"
+                - name: fromDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date filter"
+                - name: toDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "End date filter"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Max results to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: insights
+          path: /insights/summary
+          description: "Cloud cost savings insights"
+          operations:
+            - name: get-cost-summary
+              method: GET
+              description: "Get cloud cost savings summary from Spot optimization"
+              inputParameters:
+                - name: accountId
+                  in: query
+                  type: string
+                  required: false
+                  description: "Account ID filter"
+                - name: fromDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "Start date"
+                - name: toDate
+                  in: query
+                  type: string
+                  required: false
+                  description: "End date"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8102
+      namespace: spot-api
+      resources:
+        - path: /v1/elastigroups
+          name: elastigroups
+          description: "Elastigroup management"
+          operations:
+            - method: GET
+              name: list-elastigroups
+              description: "List AWS Elastigroups"
+              call: "spot.list-elastigroups-aws"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/ocean-clusters
+          name: ocean-clusters
+          description: "Ocean Kubernetes clusters"
+          operations:
+            - method: GET
+              name: list-ocean-clusters
+              description: "List Ocean clusters"
+              call: "spot.list-ocean-clusters-aws"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9102
+      namespace: spot-mcp
+      transport: http
+      tools:
+        - name: list-elastigroups-aws
+          description: "List AWS Elastigroups"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "spot.list-elastigroups-aws"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-cost-summary
+          description: "Get cloud cost savings summary from Spot optimization"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "spot.get-cost-summary"
+          with:
+            accountId: "tools.accountId"
+            fromDate: "tools.fromDate"
+            toDate: "tools.toDate"
+          outputParameters:
+            - type: object
+              mapping: "$."

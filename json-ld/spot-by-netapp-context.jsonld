@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "@vocab": "https://spot.io/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "finops": "https://www.finops.org/ontology/",
+
+    "ElastigroupAWS": "spot:Elastigroup",
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "region": "spot:cloudRegion",
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "Capacity": "spot:CapacityConfiguration",
+    "minimum": "spot:minimumCapacity",
+    "maximum": "spot:maximumCapacity",
+    "target": "spot:targetCapacity",
+    "unit": "spot:capacityUnit",
+
+    "Strategy": "spot:SpotStrategy",
+    "risk": "spot:spotRiskPercentage",
+    "onDemandCount": "spot:onDemandCount",
+    "availabilityVsCost": "spot:optimizationMode",
+    "fallbackToOnDemand": "spot:onDemandFallback",
+    "utilizeReservedInstances": "spot:useReservedInstances",
+
+    "OceanCluster": "spot:OceanCluster",
+    "cloudProvider": "spot:cloudProvider",
+    "autoScaler": "spot:autoScalerConfig",
+
+    "CostSavings": "finops:CostSavingsReport",
+    "actualCost": "finops:actualCost",
+    "potentialCost": "finops:potentialCost",
+    "savings": "finops:costSavings",
+    "savingsPercentage": "finops:savingsPercentage",
+    "currency": "schema:priceCurrency",
+
+    "RightsizingRecommendation": "finops:RightsizingRecommendation",
+    "resourceId": "spot:resourceId",
+    "resourceType": "spot:resourceType",
+    "currentSize": "spot:currentSize",
+    "recommendedSize": "spot:recommendedSize",
+    "estimatedMonthlySavings": "finops:estimatedSavings",
+    "justification": "schema:description",
+
+    "AuditEvent": "schema:Event",
+    "eventType": "schema:eventType",
+    "accountId": "spot:accountId",
+    "userId": "spot:userId",
+    "timestamp": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "data": "spot:eventData",
+
+    "StatefulNode": "spot:StatefulNode",
+    "state": "spot:nodeState"
+  }
+}

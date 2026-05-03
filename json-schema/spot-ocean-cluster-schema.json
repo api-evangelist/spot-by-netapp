@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.spotinst.io/schemas/ocean-cluster",
+  "title": "Spot Ocean Cluster",
+  "description": "An Ocean cluster provides intelligent Kubernetes cost optimization by automatically using Spot instances for containerized workloads",
+  "type": "object",
+  "required": ["name", "region", "cloudProvider"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique Ocean cluster identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the Ocean cluster",
+      "minLength": 1
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud provider region where the cluster runs"
+    },
+    "cloudProvider": {
+      "type": "string",
+      "enum": ["aws", "azure", "gcp"],
+      "description": "Cloud provider hosting the cluster"
+    },
+    "autoScaler": {
+      "type": "object",
+      "description": "Auto-scaler configuration for the cluster",
+      "properties": {
+        "isEnabled": {
+          "type": "boolean",
+          "description": "Whether the Ocean auto-scaler is active"
+        },
+        "cooldown": {
+          "type": "integer",
+          "description": "Scale-down cooldown period in seconds",
+          "minimum": 0
+        },
+        "resourceLimits": {
+          "type": "object",
+          "description": "Maximum resource limits for the cluster",
+          "properties": {
+            "maxVCPU": {
+              "type": "integer",
+              "description": "Maximum number of vCPUs"
+            },
+            "maxMemoryGib": {
+              "type": "integer",
+              "description": "Maximum memory in GiB"
+            }
+          }
+        },
+        "down": {
+          "type": "object",
+          "description": "Scale-down configuration",
+          "properties": {
+            "maxScaleDownPercentage": {
+              "type": "number",
+              "description": "Maximum percentage of nodes to remove in one scale-down event"
+            }
+          }
+        }
+      }
+    },
+    "capacity": {
+      "type": "object",
+      "description": "Capacity bounds for the cluster",
+      "properties": {
+        "minimum": {
+          "type": "integer",
+          "description": "Minimum number of nodes",
+          "minimum": 0
+        },
+        "maximum": {
+          "type": "integer",
+          "description": "Maximum number of nodes"
+        },
+        "target": {
+          "type": "integer",
+          "description": "Target number of nodes"
+        }
+      }
+    },
+    "compute": {
+      "type": "object",
+      "description": "Compute configuration for the cluster nodes",
+      "properties": {
+        "subnetIds": {
+          "type": "array",
+          "description": "Subnet IDs for nodes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instanceTypes": {
+          "type": "object",
+          "description": "Instance type configuration"
+        }
+      }
+    },
+    "scheduling": {
+      "type": "object",
+      "description": "Scheduled task configuration"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

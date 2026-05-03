@@ -1,0 +1,126 @@
+name: Spot by NetApp Vocabulary
+description: >-
+  Domain vocabulary for the Spot by NetApp cloud infrastructure optimization platform,
+  covering terminology for cloud cost optimization, Spot instances, Kubernetes management,
+  and FinOps practices.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Spot Instance
+    definition: >-
+      A type of cloud compute capacity offered at a discount (typically 60-90% below
+      on-demand pricing) using spare cloud provider capacity, with the risk of
+      interruption with short notice (e.g., 2 minutes on AWS).
+    related:
+      - Preemptible VM
+      - Spot VM
+      - Low Priority VM
+
+  - term: Elastigroup
+    definition: >-
+      Spot by NetApp's core product for intelligent auto-scaling groups. Elastigroup
+      manages a mix of Spot and On-Demand instances, automatically replacing interrupted
+      Spot instances to maintain target capacity while maximizing savings.
+
+  - term: Ocean
+    definition: >-
+      Spot by NetApp's Kubernetes and container cost optimization product. Ocean
+      manages cloud infrastructure for containerized workloads, automatically
+      selecting optimal instance types and using Spot capacity to reduce costs.
+
+  - term: Ocean CD
+    definition: >-
+      Spot by NetApp's progressive delivery controller for Kubernetes, providing
+      canary deployments, traffic splitting, and automated rollback capabilities
+      integrated with the Ocean cost optimization layer.
+
+  - term: Stateful Node
+    definition: >-
+      A Spot by NetApp resource type for persistent workloads that require maintained
+      state (volumes, IPs) across Spot interruptions, enabling Spot savings for
+      workloads that traditionally required On-Demand instances.
+
+  - term: Rightsizing
+    definition: >-
+      The process of matching cloud resource allocations (instance types, CPU, memory)
+      to actual workload requirements to eliminate waste. Ocean provides automated
+      rightsizing recommendations and enforcement.
+
+  - term: On-Demand Instance
+    definition: >-
+      A cloud compute instance charged at the standard per-hour price with no
+      long-term commitment and guaranteed availability. Used as a fallback when
+      Spot capacity is not available.
+
+  - term: Spot Interruption
+    definition: >-
+      When a cloud provider reclaims a Spot instance to serve On-Demand requests,
+      giving users short notice (2 minutes on AWS). Elastigroup handles interruptions
+      by automatically provisioning replacement capacity.
+
+  - term: Availability vs. Cost
+    definition: >-
+      A tunable strategy parameter in Elastigroup determining whether the system
+      prioritizes maintaining instance count (availability) or minimizing cost.
+      Options include balanced, availabilityOriented, and costOriented.
+
+  - term: FinOps
+    definition: >-
+      Financial Operations — a cloud financial management practice that brings
+      financial accountability to variable cloud spending, enabling teams to
+      understand and optimize their cloud costs.
+
+  - term: Savings Percentage
+    definition: >-
+      The percentage reduction in cloud compute costs achieved by Spot by NetApp's
+      optimization, calculated as (potential cost - actual cost) / potential cost.
+      Typical savings range from 60-90%.
+
+  - term: Reserved Instance
+    definition: >-
+      A cloud pricing model where users commit to a specific instance type for
+      1 or 3 years in exchange for significant discounts (up to 72% on AWS).
+      Elastigroup can utilize existing Reserved Instances before using Spot.
+
+  - term: Auto-Scaling
+    definition: >-
+      Automatically adjusting the number of compute instances based on current
+      demand. Elastigroup extends auto-scaling with Spot instance optimization.
+
+  - term: Ocean Spark
+    definition: >-
+      Spot by NetApp's managed Apache Spark service running on Ocean, providing
+      cost-optimized data processing using Spot instances.
+
+  - term: EMR Scaler
+    definition: >-
+      Spot by NetApp's product for cost-optimizing Amazon EMR (Elastic MapReduce)
+      Hadoop workloads using Spot instances.
+
+  - term: Account ID
+    definition: >-
+      A unique identifier for a Spot by NetApp account, used as a scope parameter
+      in API requests to filter resources to a specific cloud account.
+
+  - term: Bearer Token
+    definition: >-
+      The authentication mechanism for the Spot API. API tokens are created through
+      the console or API and passed in the Authorization: Bearer <token> header.
+
+  - term: VNG (Virtual Node Group)
+    definition: >-
+      A subset of an Ocean cluster with specific instance type, AMI, and scaling
+      requirements, used to tailor node pools for different workload profiles.
+
+tags:
+  - Cloud Optimization
+  - FinOps
+  - Kubernetes
+  - AWS
+  - Azure
+  - GCP
+  - Spot Instances
+  - Cost Optimization
+  - Auto Scaling
+  - DevOps
