@@ -57,7 +57,7 @@ apis:
       - type: OpenAPI
         url: >-
           https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/openapi/spot-by-netapp-openapi.yml
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.spot.io/
       - type: GitHub
         url: https://github.com/spotinst/openapi
