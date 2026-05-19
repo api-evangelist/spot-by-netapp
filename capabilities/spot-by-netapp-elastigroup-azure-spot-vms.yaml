@@ -1,0 +1,229 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spot by NetApp API — Elastigroup Azure Spot VMs
+  description: 'Spot by NetApp API — Elastigroup Azure Spot VMs. 5 operations. Lead operation: List Elastigroups Azure. Self-contained
+    Naftiko capability covering one Spot By Netapp business surface.'
+  tags:
+  - Spot By Netapp
+  - Elastigroup Azure Spot VMs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPOT_BY_NETAPP_API_KEY: SPOT_BY_NETAPP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spot-by-netapp-elastigroup-azure-spot-vms
+    baseUri: https://api.spotinst.io
+    description: Spot by NetApp API — Elastigroup Azure Spot VMs business capability. Self-contained, no shared references.
+    resources:
+    - name: azure-compute-elastigroup
+      path: /azure/compute/elastigroup
+      operations:
+      - name: listelastigroupsazure
+        method: GET
+        description: List Elastigroups Azure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: query
+          type: string
+      - name: createelastigroupazure
+        method: POST
+        description: Create Elastigroup Azure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: azure-compute-elastigroup-groupId
+      path: /azure/compute/elastigroup/{groupId}
+      operations:
+      - name: getelastigroupazure
+        method: GET
+        description: Get Elastigroup Azure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+      - name: updateelastigroupazure
+        method: PUT
+        description: Update Elastigroup Azure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteelastigroupazure
+        method: DELETE
+        description: Delete Elastigroup Azure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SPOT_BY_NETAPP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: spot-by-netapp-elastigroup-azure-spot-vms-rest
+    port: 8080
+    description: REST adapter for Spot by NetApp API — Elastigroup Azure Spot VMs. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/azure/compute/elastigroup
+      name: azure-compute-elastigroup
+      description: REST surface for azure-compute-elastigroup.
+      operations:
+      - method: GET
+        name: listelastigroupsazure
+        description: List Elastigroups Azure
+        call: spot-by-netapp-elastigroup-azure-spot-vms.listelastigroupsazure
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createelastigroupazure
+        description: Create Elastigroup Azure
+        call: spot-by-netapp-elastigroup-azure-spot-vms.createelastigroupazure
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/azure/compute/elastigroup/{groupid}
+      name: azure-compute-elastigroup-groupid
+      description: REST surface for azure-compute-elastigroup-groupId.
+      operations:
+      - method: GET
+        name: getelastigroupazure
+        description: Get Elastigroup Azure
+        call: spot-by-netapp-elastigroup-azure-spot-vms.getelastigroupazure
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateelastigroupazure
+        description: Update Elastigroup Azure
+        call: spot-by-netapp-elastigroup-azure-spot-vms.updateelastigroupazure
+        with:
+          groupId: rest.groupId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteelastigroupazure
+        description: Delete Elastigroup Azure
+        call: spot-by-netapp-elastigroup-azure-spot-vms.deleteelastigroupazure
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spot-by-netapp-elastigroup-azure-spot-vms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spot by NetApp API — Elastigroup Azure Spot VMs. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: list-elastigroups-azure
+      description: List Elastigroups Azure
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-azure-spot-vms.listelastigroupsazure
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-elastigroup-azure
+      description: Create Elastigroup Azure
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spot-by-netapp-elastigroup-azure-spot-vms.createelastigroupazure
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastigroup-azure
+      description: Get Elastigroup Azure
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-azure-spot-vms.getelastigroupazure
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-elastigroup-azure
+      description: Update Elastigroup Azure
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-azure-spot-vms.updateelastigroupazure
+      with:
+        groupId: tools.groupId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-elastigroup-azure
+      description: Delete Elastigroup Azure
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spot-by-netapp-elastigroup-azure-spot-vms.deleteelastigroupazure
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

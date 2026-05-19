@@ -1,0 +1,280 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spot by NetApp API — Ocean AWS
+  description: 'Spot by NetApp API — Ocean AWS. 6 operations. Lead operation: List Ocean Clusters AWS. Self-contained Naftiko
+    capability covering one Spot By Netapp business surface.'
+  tags:
+  - Spot By Netapp
+  - Ocean AWS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPOT_BY_NETAPP_API_KEY: SPOT_BY_NETAPP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spot-by-netapp-ocean-aws
+    baseUri: https://api.spotinst.io
+    description: Spot by NetApp API — Ocean AWS business capability. Self-contained, no shared references.
+    resources:
+    - name: ocean-aws-k8s-cluster
+      path: /ocean/aws/k8s/cluster
+      operations:
+      - name: listoceanclustersaws
+        method: GET
+        description: List Ocean Clusters AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: query
+          type: string
+      - name: createoceanclusteraws
+        method: POST
+        description: Create Ocean Cluster AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ocean-aws-k8s-cluster-clusterId
+      path: /ocean/aws/k8s/cluster/{clusterId}
+      operations:
+      - name: getoceanclusteraws
+        method: GET
+        description: Get Ocean Cluster AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+      - name: updateoceanclusteraws
+        method: PUT
+        description: Update Ocean Cluster AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteoceanclusteraws
+        method: DELETE
+        description: Delete Ocean Cluster AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+    - name: ocean-aws-k8s-cluster-clusterId-costs
+      path: /ocean/aws/k8s/cluster/{clusterId}/costs
+      operations:
+      - name: getoceanclustercostsaws
+        method: GET
+        description: Get Ocean Cluster Costs AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: clusterId
+          in: path
+          type: string
+          required: true
+        - name: startTime
+          in: query
+          type: string
+        - name: endTime
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.SPOT_BY_NETAPP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: spot-by-netapp-ocean-aws-rest
+    port: 8080
+    description: REST adapter for Spot by NetApp API — Ocean AWS. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ocean/aws/k8s/cluster
+      name: ocean-aws-k8s-cluster
+      description: REST surface for ocean-aws-k8s-cluster.
+      operations:
+      - method: GET
+        name: listoceanclustersaws
+        description: List Ocean Clusters AWS
+        call: spot-by-netapp-ocean-aws.listoceanclustersaws
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createoceanclusteraws
+        description: Create Ocean Cluster AWS
+        call: spot-by-netapp-ocean-aws.createoceanclusteraws
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ocean/aws/k8s/cluster/{clusterid}
+      name: ocean-aws-k8s-cluster-clusterid
+      description: REST surface for ocean-aws-k8s-cluster-clusterId.
+      operations:
+      - method: GET
+        name: getoceanclusteraws
+        description: Get Ocean Cluster AWS
+        call: spot-by-netapp-ocean-aws.getoceanclusteraws
+        with:
+          clusterId: rest.clusterId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateoceanclusteraws
+        description: Update Ocean Cluster AWS
+        call: spot-by-netapp-ocean-aws.updateoceanclusteraws
+        with:
+          clusterId: rest.clusterId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteoceanclusteraws
+        description: Delete Ocean Cluster AWS
+        call: spot-by-netapp-ocean-aws.deleteoceanclusteraws
+        with:
+          clusterId: rest.clusterId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/ocean/aws/k8s/cluster/{clusterid}/costs
+      name: ocean-aws-k8s-cluster-clusterid-costs
+      description: REST surface for ocean-aws-k8s-cluster-clusterId-costs.
+      operations:
+      - method: GET
+        name: getoceanclustercostsaws
+        description: Get Ocean Cluster Costs AWS
+        call: spot-by-netapp-ocean-aws.getoceanclustercostsaws
+        with:
+          clusterId: rest.clusterId
+          startTime: rest.startTime
+          endTime: rest.endTime
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spot-by-netapp-ocean-aws-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spot by NetApp API — Ocean AWS. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-ocean-clusters-aws
+      description: List Ocean Clusters AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-ocean-aws.listoceanclustersaws
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-ocean-cluster-aws
+      description: Create Ocean Cluster AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spot-by-netapp-ocean-aws.createoceanclusteraws
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ocean-cluster-aws
+      description: Get Ocean Cluster AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-ocean-aws.getoceanclusteraws
+      with:
+        clusterId: tools.clusterId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-ocean-cluster-aws
+      description: Update Ocean Cluster AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-ocean-aws.updateoceanclusteraws
+      with:
+        clusterId: tools.clusterId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ocean-cluster-aws
+      description: Delete Ocean Cluster AWS
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spot-by-netapp-ocean-aws.deleteoceanclusteraws
+      with:
+        clusterId: tools.clusterId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ocean-cluster-costs-aws
+      description: Get Ocean Cluster Costs AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-ocean-aws.getoceanclustercostsaws
+      with:
+        clusterId: tools.clusterId
+        startTime: tools.startTime
+        endTime: tools.endTime
+      outputParameters:
+      - type: object
+        mapping: $.

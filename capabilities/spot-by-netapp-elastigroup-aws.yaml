@@ -1,0 +1,419 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spot by NetApp API — Elastigroup AWS
+  description: 'Spot by NetApp API — Elastigroup AWS. 9 operations. Lead operation: List Elastigroups AWS. Self-contained
+    Naftiko capability covering one Spot By Netapp business surface.'
+  tags:
+  - Spot By Netapp
+  - Elastigroup AWS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPOT_BY_NETAPP_API_KEY: SPOT_BY_NETAPP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spot-by-netapp-elastigroup-aws
+    baseUri: https://api.spotinst.io
+    description: Spot by NetApp API — Elastigroup AWS business capability. Self-contained, no shared references.
+    resources:
+    - name: aws-ec2-group
+      path: /aws/ec2/group
+      operations:
+      - name: listelastigroupsaws
+        method: GET
+        description: List Elastigroups AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: query
+          type: string
+          description: Spot Account ID to filter by
+      - name: createelastigroupaws
+        method: POST
+        description: Create Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: aws-ec2-group-groupId
+      path: /aws/ec2/group/{groupId}
+      operations:
+      - name: getelastigroupaws
+        method: GET
+        description: Get Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Elastigroup identifier
+          required: true
+      - name: updateelastigroupaws
+        method: PUT
+        description: Update Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteelastigroupaws
+        method: DELETE
+        description: Delete Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    - name: aws-ec2-group-groupId-costs
+      path: /aws/ec2/group/{groupId}/costs
+      operations:
+      - name: getelastigroupcostsaws
+        method: GET
+        description: Get Elastigroup Costs AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: toDate
+          in: query
+          type: string
+        - name: fromDate
+          in: query
+          type: string
+    - name: aws-ec2-group-groupId-scale-down
+      path: /aws/ec2/group/{groupId}/scale/down
+      operations:
+      - name: scaledownelastigroupaws
+        method: PUT
+        description: Scale Down Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: adjustment
+          in: query
+          type: integer
+          description: Number of instances to remove
+          required: true
+    - name: aws-ec2-group-groupId-scale-up
+      path: /aws/ec2/group/{groupId}/scale/up
+      operations:
+      - name: scaleupelastigroupaws
+        method: PUT
+        description: Scale Up Elastigroup AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: adjustment
+          in: query
+          type: integer
+          description: Number of instances to add
+          required: true
+    - name: aws-ec2-group-groupId-status
+      path: /aws/ec2/group/{groupId}/status
+      operations:
+      - name: getelastigroupstatusaws
+        method: GET
+        description: Get Elastigroup Status AWS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SPOT_BY_NETAPP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: spot-by-netapp-elastigroup-aws-rest
+    port: 8080
+    description: REST adapter for Spot by NetApp API — Elastigroup AWS. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/aws/ec2/group
+      name: aws-ec2-group
+      description: REST surface for aws-ec2-group.
+      operations:
+      - method: GET
+        name: listelastigroupsaws
+        description: List Elastigroups AWS
+        call: spot-by-netapp-elastigroup-aws.listelastigroupsaws
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createelastigroupaws
+        description: Create Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.createelastigroupaws
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aws/ec2/group/{groupid}
+      name: aws-ec2-group-groupid
+      description: REST surface for aws-ec2-group-groupId.
+      operations:
+      - method: GET
+        name: getelastigroupaws
+        description: Get Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.getelastigroupaws
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateelastigroupaws
+        description: Update Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.updateelastigroupaws
+        with:
+          groupId: rest.groupId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteelastigroupaws
+        description: Delete Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.deleteelastigroupaws
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aws/ec2/group/{groupid}/costs
+      name: aws-ec2-group-groupid-costs
+      description: REST surface for aws-ec2-group-groupId-costs.
+      operations:
+      - method: GET
+        name: getelastigroupcostsaws
+        description: Get Elastigroup Costs AWS
+        call: spot-by-netapp-elastigroup-aws.getelastigroupcostsaws
+        with:
+          groupId: rest.groupId
+          toDate: rest.toDate
+          fromDate: rest.fromDate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aws/ec2/group/{groupid}/scale/down
+      name: aws-ec2-group-groupid-scale-down
+      description: REST surface for aws-ec2-group-groupId-scale-down.
+      operations:
+      - method: PUT
+        name: scaledownelastigroupaws
+        description: Scale Down Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.scaledownelastigroupaws
+        with:
+          groupId: rest.groupId
+          adjustment: rest.adjustment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aws/ec2/group/{groupid}/scale/up
+      name: aws-ec2-group-groupid-scale-up
+      description: REST surface for aws-ec2-group-groupId-scale-up.
+      operations:
+      - method: PUT
+        name: scaleupelastigroupaws
+        description: Scale Up Elastigroup AWS
+        call: spot-by-netapp-elastigroup-aws.scaleupelastigroupaws
+        with:
+          groupId: rest.groupId
+          adjustment: rest.adjustment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/aws/ec2/group/{groupid}/status
+      name: aws-ec2-group-groupid-status
+      description: REST surface for aws-ec2-group-groupId-status.
+      operations:
+      - method: GET
+        name: getelastigroupstatusaws
+        description: Get Elastigroup Status AWS
+        call: spot-by-netapp-elastigroup-aws.getelastigroupstatusaws
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spot-by-netapp-elastigroup-aws-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spot by NetApp API — Elastigroup AWS. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-elastigroups-aws
+      description: List Elastigroups AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.listelastigroupsaws
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-elastigroup-aws
+      description: Create Elastigroup AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spot-by-netapp-elastigroup-aws.createelastigroupaws
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastigroup-aws
+      description: Get Elastigroup AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.getelastigroupaws
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-elastigroup-aws
+      description: Update Elastigroup AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.updateelastigroupaws
+      with:
+        groupId: tools.groupId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-elastigroup-aws
+      description: Delete Elastigroup AWS
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.deleteelastigroupaws
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastigroup-costs-aws
+      description: Get Elastigroup Costs AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.getelastigroupcostsaws
+      with:
+        groupId: tools.groupId
+        toDate: tools.toDate
+        fromDate: tools.fromDate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: scale-down-elastigroup-aws
+      description: Scale Down Elastigroup AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.scaledownelastigroupaws
+      with:
+        groupId: tools.groupId
+        adjustment: tools.adjustment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: scale-up-elastigroup-aws
+      description: Scale Up Elastigroup AWS
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.scaleupelastigroupaws
+      with:
+        groupId: tools.groupId
+        adjustment: tools.adjustment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-elastigroup-status-aws
+      description: Get Elastigroup Status AWS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-elastigroup-aws.getelastigroupstatusaws
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

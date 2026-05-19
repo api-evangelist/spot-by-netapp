@@ -1,0 +1,281 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spot by NetApp API — Audit Service
+  description: 'Spot by NetApp API — Audit Service. 6 operations. Lead operation: Get Audit Log. Self-contained Naftiko capability
+    covering one Spot By Netapp business surface.'
+  tags:
+  - Spot By Netapp
+  - Audit Service
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPOT_BY_NETAPP_API_KEY: SPOT_BY_NETAPP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: spot-by-netapp-audit-service
+    baseUri: https://api.spotinst.io
+    description: Spot by NetApp API — Audit Service business capability. Self-contained, no shared references.
+    resources:
+    - name: audit-log
+      path: /audit/log
+      operations:
+      - name: getauditlog
+        method: GET
+        description: Get Audit Log
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: query
+          type: string
+        - name: fromDate
+          in: query
+          type: string
+        - name: toDate
+          in: query
+          type: string
+        - name: resourceType
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    - name: setup-account
+      path: /setup/account
+      operations:
+      - name: listaccounts
+        method: GET
+        description: List Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaccount
+        method: POST
+        description: Create Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: setup-account-accountId
+      path: /setup/account/{accountId}
+      operations:
+      - name: getaccount
+        method: GET
+        description: Get Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+      - name: updateaccount
+        method: PUT
+        description: Update Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteaccount
+        method: DELETE
+        description: Delete Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SPOT_BY_NETAPP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: spot-by-netapp-audit-service-rest
+    port: 8080
+    description: REST adapter for Spot by NetApp API — Audit Service. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/audit/log
+      name: audit-log
+      description: REST surface for audit-log.
+      operations:
+      - method: GET
+        name: getauditlog
+        description: Get Audit Log
+        call: spot-by-netapp-audit-service.getauditlog
+        with:
+          accountId: rest.accountId
+          fromDate: rest.fromDate
+          toDate: rest.toDate
+          resourceType: rest.resourceType
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/setup/account
+      name: setup-account
+      description: REST surface for setup-account.
+      operations:
+      - method: GET
+        name: listaccounts
+        description: List Accounts
+        call: spot-by-netapp-audit-service.listaccounts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccount
+        description: Create Account
+        call: spot-by-netapp-audit-service.createaccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/setup/account/{accountid}
+      name: setup-account-accountid
+      description: REST surface for setup-account-accountId.
+      operations:
+      - method: GET
+        name: getaccount
+        description: Get Account
+        call: spot-by-netapp-audit-service.getaccount
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateaccount
+        description: Update Account
+        call: spot-by-netapp-audit-service.updateaccount
+        with:
+          accountId: rest.accountId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteaccount
+        description: Delete Account
+        call: spot-by-netapp-audit-service.deleteaccount
+        with:
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: spot-by-netapp-audit-service-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spot by NetApp API — Audit Service. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-audit-log
+      description: Get Audit Log
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-audit-service.getauditlog
+      with:
+        accountId: tools.accountId
+        fromDate: tools.fromDate
+        toDate: tools.toDate
+        resourceType: tools.resourceType
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-accounts
+      description: List Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-audit-service.listaccounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-account
+      description: Create Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: spot-by-netapp-audit-service.createaccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account
+      description: Get Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-audit-service.getaccount
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-account
+      description: Update Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: spot-by-netapp-audit-service.updateaccount
+      with:
+        accountId: tools.accountId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-account
+      description: Delete Account
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: spot-by-netapp-audit-service.deleteaccount
+      with:
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
