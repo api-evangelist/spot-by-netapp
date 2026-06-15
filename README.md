@@ -1,8 +1,8 @@
-# Spot by NetApp
+# Spot by NetApp (spot-by-netapp)
 
-Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and intelligent management for cloud workloads across AWS, Azure, and GCP. The Spot platform includes Elastigroup for intelligent auto-scaling using Spot instances, Ocean for Kubernetes and container cost optimization, Stateful Nodes for stateful workloads, EMR Scaler for Hadoop workloads, and Ocean CD for progressive delivery. Typical savings of 60-90% on compute costs.
+Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and intelligent management for cloud workloads across AWS, Azure, and GCP. The Spot platform includes Elastigroup for intelligent auto-scaling using Spot instances, Ocean for Kubernetes and container cost optimization, Stateful Nodes for stateful workloads, EMR Scaler for Hadoop workloads, and Ocean CD for progressive delivery. The platform delivers FinOps capabilities including rightsizing recommendations, cost analysis, and cloud spend visibility.
 
-**URL:** [https://spot.io/](https://spot.io/)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -12,91 +12,71 @@ Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infras
 
 ## Tags
 
-Cloud Optimization, FinOps, Kubernetes, AWS, Azure, GCP, Cost Optimization, Auto Scaling
+- Cloud Optimization
+- FinOps
+- Kubernetes
+- AWS
+- Azure
+- GCP
+- Cost Optimization
+- Auto Scaling
 
 ## Timestamps
 
 - **Created:** 2026-03-27
-- **Modified:** 2026-05-02
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Spot by NetApp API
 
-REST API for managing Elastigroup auto-scaling, Ocean Kubernetes clusters, Stateful Nodes, cost analysis, rightsizing recommendations, audit logging, and account administration across AWS, Azure, and GCP.
+The Spot by NetApp REST API enables programmatic management of cloud infrastructure optimization resources. Manage Elastigroup auto-scaling groups across AWS, Azure, and GCP; create and configure Ocean clusters for Kubernetes cost optimization; set up Stateful Nodes for persistent workloads; retrieve cost analysis and savings reports; access rightsizing recommendations; and manage account configuration, API tokens, audit logs, and notification subscriptions. Bearer token authentication required.
 
-**Human URL:** [https://spot.io/](https://spot.io/)
-
-**Base URL:** `https://api.spotinst.io`
+- **Human URL:** [https://spot.io/](https://spot.io/)
+- **Base URL:** `https://api.spotinst.io`
 
 #### Tags
 
-Cloud Optimization, FinOps, Kubernetes, AWS, Azure, GCP, Auto Scaling, Spot Instances, Cost Management, DevOps
+- Cloud Optimization
+- FinOps
+- Kubernetes
+- AWS
+- Azure
+- GCP
+- Auto Scaling
+- Spot Instances
+- Cost Management
+- DevOps
 
 #### Properties
 
 - [Documentation](https://docs.spot.io/)
 - [Reference](https://docs.spot.io/api/)
-- [OpenAPI](openapi/spot-by-netapp-openapi.yml)
-- [GitHub](https://github.com/spotinst/openapi)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/openapi/spot-by-netapp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Getting Started](https://docs.spot.io/)
+- [Git Hub](https://github.com/spotinst/openapi)
+- [Postman Collection](collections/spot-by-netapp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/spot-by-netapp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
+- [LinkedIn](https://www.linkedin.com/company/spothq)
 - [Website](https://spot.io/)
+- [Portal](https://docs.spot.io/)
 - [Documentation](https://docs.spot.io/)
 - [Reference](https://docs.spot.io/api/)
-- [GitHub](https://github.com/spotinst)
+- [Git Hub](https://github.com/spotinst)
+- [SDK](https://github.com/spotinst/spotinst-sdk-go)
+- [SDK](https://github.com/spotinst/spotinst-sdk-java)
+- [SDK](https://github.com/spotinst/spotinst-sdk-nodejs)
+- [SDK](https://github.com/spotinst/spotinst-sdk-python)
+- [Terraform](https://github.com/spotinst/terraform-provider-spotinst)
+- [Helm](https://github.com/spotinst/spotinst-kubernetes-helm-charts)
+- [C L I](https://github.com/spotinst/spotctl)
 - [Console](https://console.spotinst.com/)
-- [Go SDK](https://github.com/spotinst/spotinst-sdk-go)
-- [Java SDK](https://github.com/spotinst/spotinst-sdk-java)
-- [Node.js SDK](https://github.com/spotinst/spotinst-sdk-nodejs)
-- [Python SDK](https://github.com/spotinst/spotinst-sdk-python)
-- [Terraform Provider](https://github.com/spotinst/terraform-provider-spotinst)
-- [Helm Charts](https://github.com/spotinst/spotinst-kubernetes-helm-charts)
-- [CLI](https://github.com/spotinst/spotctl)
-
-## Artifacts
-
-### OpenAPI
-
-- [Spot by NetApp API](openapi/spot-by-netapp-openapi.yml) — REST API specification for Elastigroup, Ocean, account, audit, and insights endpoints
-
-### Spectral Rules
-
-- [Spot by NetApp Rules](rules/spot-by-netapp-rules.yml) — Spectral ruleset enforcing Spot API conventions
-
-### JSON Schema
-
-- [Elastigroup Schema](json-schema/spot-elastigroup-schema.json) — Schema for Elastigroup auto-scaling group resources
-- [Ocean Cluster Schema](json-schema/spot-ocean-cluster-schema.json) — Schema for Ocean Kubernetes cluster resources
-
-### JSON Structure
-
-- [Spot by NetApp Structure](json-structure/spot-by-netapp-structure.json) — Structure documentation for Elastigroup, Ocean, cost savings, and audit event data
-
-### JSON-LD
-
-- [Spot by NetApp Context](json-ld/spot-by-netapp-context.jsonld) — JSON-LD context mapping Spot concepts to schema.org and FinOps ontology
-
-### Examples
-
-- [Create Elastigroup Example](examples/spot-create-elastigroup-example.json) — Example for creating an AWS Elastigroup
-- [Get Cost Summary Example](examples/spot-get-cost-summary-example.json) — Example for retrieving cloud cost savings summary
-
-### Vocabulary
-
-- [Spot by NetApp Vocabulary](vocabulary/spot-by-netapp-vocabulary.yml) — Domain vocabulary for cloud optimization and FinOps terminology
-
-### Capabilities
-
-#### Shared Definitions
-- [Spot API](capabilities/shared/spot.yaml) — Per-API capability definition with 20 operations
-
-#### Workflow Capabilities
-- [Cloud Cost Optimization](capabilities/cloud-cost-optimization.yaml) — Elastigroup management, Ocean Kubernetes optimization, rightsizing, and cost analysis workflow (16 MCP tools)
+- [Login](https://console.spotinst.com/)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

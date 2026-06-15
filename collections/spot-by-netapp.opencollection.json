@@ -1,0 +1,806 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elastigroup AWS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Elastigroups AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/aws/ec2/group",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "Spot Account ID to filter by"
+              }
+            ]
+          },
+          "docs": "Retrieve all Elastigroup instances for the authenticated account on AWS."
+        },
+        {
+          "info": {
+            "name": "Create Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/aws/ec2/group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Elastigroup for intelligent auto-scaling on AWS with Spot instances."
+        },
+        {
+          "info": {
+            "name": "Get Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path",
+                "description": "Elastigroup identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Elastigroup by ID."
+        },
+        {
+          "info": {
+            "name": "Update Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Elastigroup configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an Elastigroup and all associated resources."
+        },
+        {
+          "info": {
+            "name": "Scale Up Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId/scale/up",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "adjustment",
+                "value": "",
+                "type": "query",
+                "description": "Number of instances to add"
+              }
+            ]
+          },
+          "docs": "Scale up an Elastigroup by adding capacity."
+        },
+        {
+          "info": {
+            "name": "Scale Down Elastigroup AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId/scale/down",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "adjustment",
+                "value": "",
+                "type": "query",
+                "description": "Number of instances to remove"
+              }
+            ]
+          },
+          "docs": "Scale down an Elastigroup by removing capacity."
+        },
+        {
+          "info": {
+            "name": "Get Elastigroup Status AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId/status",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the current status and instance details for an Elastigroup."
+        },
+        {
+          "info": {
+            "name": "Get Elastigroup Costs AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/aws/ec2/group/:groupId/costs",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cost analysis and savings for an Elastigroup."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ocean AWS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Ocean Clusters AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all Ocean clusters for Kubernetes on AWS."
+        },
+        {
+          "info": {
+            "name": "Create Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Ocean cluster for Kubernetes cost optimization on AWS."
+        },
+        {
+          "info": {
+            "name": "Get Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific Ocean cluster."
+        },
+        {
+          "info": {
+            "name": "Update Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Ocean cluster configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an Ocean cluster."
+        },
+        {
+          "info": {
+            "name": "Get Ocean Cluster Costs AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId/costs",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cost breakdown and savings analysis for an Ocean cluster."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ocean Automatic Rightsizing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ocean Rightsizing Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId/rightSizing/suggestions",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve container rightsizing recommendations to optimize resource allocation and cost."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Elastigroup Azure Spot VMs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Elastigroups Azure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/azure/compute/elastigroup",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all Elastigroup instances on Microsoft Azure."
+        },
+        {
+          "info": {
+            "name": "Create Elastigroup Azure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/azure/compute/elastigroup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Elastigroup for Azure Spot VMs."
+        },
+        {
+          "info": {
+            "name": "Get Elastigroup Azure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/azure/compute/elastigroup/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific Azure Elastigroup by ID."
+        },
+        {
+          "info": {
+            "name": "Update Elastigroup Azure",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/azure/compute/elastigroup/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an Azure Elastigroup configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Elastigroup Azure",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/azure/compute/elastigroup/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an Azure Elastigroup."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Elastigroup GCP",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Elastigroups GCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/gcp/gce/group",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all Elastigroup instances on Google Cloud Platform."
+        },
+        {
+          "info": {
+            "name": "Create Elastigroup GCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/gcp/gce/group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Elastigroup for Google Cloud Preemptible VMs."
+        },
+        {
+          "info": {
+            "name": "Get Elastigroup GCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/gcp/gce/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific GCP Elastigroup by ID."
+        },
+        {
+          "info": {
+            "name": "Update Elastigroup GCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/gcp/gce/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a GCP Elastigroup configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Elastigroup GCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/gcp/gce/group/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a GCP Elastigroup."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/setup/account"
+          },
+          "docs": "Retrieve all Spot accounts associated with the authenticated organization."
+        },
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/setup/account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Spot account for a cloud provider."
+        },
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/setup/account/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific Spot account."
+        },
+        {
+          "info": {
+            "name": "Update Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/setup/account/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/setup/account/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a Spot account."
+        },
+        {
+          "info": {
+            "name": "Get Audit Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/audit/log",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve audit log events for account activity and API calls."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Create an API Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/setup/user/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API access token for authenticating Spot API requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Insights Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cost Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/insights/summary",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a summary of cloud cost savings achieved through Spot optimization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Notification Subscription Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/events",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve notification events for resources in the Spot account."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health Check Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/healthCheck"
+          },
+          "docs": "Verify that the Spot API is operational."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
