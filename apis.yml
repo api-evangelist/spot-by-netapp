@@ -71,13 +71,13 @@ common:
     url: https://docs.spot.io/api/
   - type: GitHub
     url: https://github.com/spotinst
-  - type: SDK
+  - type: SDKs
     url: https://github.com/spotinst/spotinst-sdk-go
-  - type: SDK
+  - type: SDKs
     url: https://github.com/spotinst/spotinst-sdk-java
-  - type: SDK
+  - type: SDKs
     url: https://github.com/spotinst/spotinst-sdk-nodejs
-  - type: SDK
+  - type: SDKs
     url: https://github.com/spotinst/spotinst-sdk-python
   - type: Terraform
     url: https://github.com/spotinst/terraform-provider-spotinst
