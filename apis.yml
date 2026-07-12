@@ -59,6 +59,10 @@ apis:
       - type: GitHub
         url: https://github.com/spotinst/openapi
 common:
+  - type: DomainSecurity
+    url: security/spot-by-netapp-domain-security.yml
+  - type: Authentication
+    url: authentication/spot-by-netapp-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/spothq
   - type: Website
@@ -89,6 +93,8 @@ common:
     url: https://console.spotinst.com/
   - type: Login
     url: https://console.spotinst.com/
+  - url: https://www.flexera.com/blog/finops/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
