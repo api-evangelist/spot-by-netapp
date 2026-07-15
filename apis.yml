@@ -59,6 +59,8 @@ apis:
       - type: GitHub
         url: https://github.com/spotinst/openapi
 common:
+  - type: AgenticAccess
+    url: agentic-access/spot-by-netapp-agentic-access.yml
   - type: DomainSecurity
     url: security/spot-by-netapp-domain-security.yml
   - type: Authentication
