@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Elastigroup GCP API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Elastigroup GCP
+paths:
+  /gcp/gce/group:
+    get:
+      operationId: listElastigroupsGCP
+      summary: List Elastigroups GCP
+      description: Retrieve all Elastigroup instances on Google Cloud Platform.
+      tags:
+      - Elastigroup GCP
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of GCP Elastigroups
+    post:
+      operationId: createElastigroupGCP
+      summary: Create Elastigroup GCP
+      description: Create a new Elastigroup for Google Cloud Preemptible VMs.
+      tags:
+      - Elastigroup GCP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: GCP Elastigroup created
+  /gcp/gce/group/{groupId}:
+    get:
+      operationId: getElastigroupGCP
+      summary: Get Elastigroup GCP
+      description: Retrieve a specific GCP Elastigroup by ID.
+      tags:
+      - Elastigroup GCP
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: GCP Elastigroup details
+    put:
+      operationId: updateElastigroupGCP
+      summary: Update Elastigroup GCP
+      description: Update a GCP Elastigroup configuration.
+      tags:
+      - Elastigroup GCP
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: GCP Elastigroup updated
+    delete:
+      operationId: deleteElastigroupGCP
+      summary: Delete Elastigroup GCP
+      description: Delete a GCP Elastigroup.
+      tags:
+      - Elastigroup GCP
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: GCP Elastigroup deleted
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Notification Subscription Service API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Notification Subscription Service
+paths:
+  /events:
+    get:
+      operationId: listEvents
+      summary: List Events
+      description: Retrieve notification events for resources in the Spot account.
+      tags:
+      - Notification Subscription Service
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: resourceId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: fromDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: List of events
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

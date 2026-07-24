@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Ocean AWS API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Ocean AWS
+paths:
+  /ocean/aws/k8s/cluster:
+    get:
+      operationId: listOceanClustersAWS
+      summary: List Ocean Clusters AWS
+      description: Retrieve all Ocean clusters for Kubernetes on AWS.
+      tags:
+      - Ocean AWS
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of Ocean clusters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/OceanCluster'
+    post:
+      operationId: createOceanClusterAWS
+      summary: Create Ocean Cluster AWS
+      description: Create a new Ocean cluster for Kubernetes cost optimization on AWS.
+      tags:
+      - Ocean AWS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cluster:
+                  $ref: '#/components/schemas/OceanCluster'
+      responses:
+        '200':
+          description: Ocean cluster created
+  /ocean/aws/k8s/cluster/{clusterId}:
+    get:
+      operationId: getOceanClusterAWS
+      summary: Get Ocean Cluster AWS
+      description: Retrieve details for a specific Ocean cluster.
+      tags:
+      - Ocean AWS
+      parameters:
+      - name: clusterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ocean cluster details
+    put:
+      operationId: updateOceanClusterAWS
+      summary: Update Ocean Cluster AWS
+      description: Update an existing Ocean cluster configuration.
+      tags:
+      - Ocean AWS
+      parameters:
+      - name: clusterId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Ocean cluster updated
+    delete:
+      operationId: deleteOceanClusterAWS
+      summary: Delete Ocean Cluster AWS
+      description: Delete an Ocean cluster.
+      tags:
+      - Ocean AWS
+      parameters:
+      - name: clusterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ocean cluster deleted
+  /ocean/aws/k8s/cluster/{clusterId}/costs:
+    get:
+      operationId: getOceanClusterCostsAWS
+      summary: Get Ocean Cluster Costs AWS
+      description: Retrieve cost breakdown and savings analysis for an Ocean cluster.
+      tags:
+      - Ocean AWS
+      parameters:
+      - name: clusterId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: startTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Ocean cluster cost data
+components:
+  schemas:
+    OceanCluster:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        cloudProvider:
+          type: string
+          enum:
+          - aws
+          - azure
+          - gcp
+        autoScaler:
+          type: object
+          properties:
+            isEnabled:
+              type: boolean
+            cooldown:
+              type: integer
+        capacity:
+          type: object
+          properties:
+            minimum:
+              type: integer
+            maximum:
+              type: integer
+            target:
+              type: integer
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

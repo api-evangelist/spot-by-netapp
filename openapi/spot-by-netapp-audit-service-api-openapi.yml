@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Audit Service
+paths:
+  /setup/account:
+    get:
+      operationId: listAccounts
+      summary: List Accounts
+      description: Retrieve all Spot accounts associated with the authenticated organization.
+      tags:
+      - Audit Service
+      responses:
+        '200':
+          description: List of Spot accounts
+    post:
+      operationId: createAccount
+      summary: Create Account
+      description: Create a new Spot account for a cloud provider.
+      tags:
+      - Audit Service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    providerExternalId:
+                      type: string
+      responses:
+        '200':
+          description: Account created
+  /setup/account/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Get Account
+      description: Retrieve details for a specific Spot account.
+      tags:
+      - Audit Service
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account details
+    put:
+      operationId: updateAccount
+      summary: Update Account
+      description: Update account configuration.
+      tags:
+      - Audit Service
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Account updated
+    delete:
+      operationId: deleteAccount
+      summary: Delete Account
+      description: Delete a Spot account.
+      tags:
+      - Audit Service
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account deleted
+  /audit/log:
+    get:
+      operationId: getAuditLog
+      summary: Get Audit Log
+      description: Retrieve audit log events for account activity and API calls.
+      tags:
+      - Audit Service
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: fromDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: toDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: resourceType
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: Audit log events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/AuditEvent'
+components:
+  schemas:
+    AuditEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        eventType:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        accountId:
+          type: string
+        userId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

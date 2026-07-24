@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Elastigroup Azure Spot VMs API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Elastigroup Azure Spot VMs
+paths:
+  /azure/compute/elastigroup:
+    get:
+      operationId: listElastigroupsAzure
+      summary: List Elastigroups Azure
+      description: Retrieve all Elastigroup instances on Microsoft Azure.
+      tags:
+      - Elastigroup Azure Spot VMs
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of Azure Elastigroups
+    post:
+      operationId: createElastigroupAzure
+      summary: Create Elastigroup Azure
+      description: Create a new Elastigroup for Azure Spot VMs.
+      tags:
+      - Elastigroup Azure Spot VMs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Azure Elastigroup created
+  /azure/compute/elastigroup/{groupId}:
+    get:
+      operationId: getElastigroupAzure
+      summary: Get Elastigroup Azure
+      description: Retrieve a specific Azure Elastigroup by ID.
+      tags:
+      - Elastigroup Azure Spot VMs
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure Elastigroup details
+    put:
+      operationId: updateElastigroupAzure
+      summary: Update Elastigroup Azure
+      description: Update an Azure Elastigroup configuration.
+      tags:
+      - Elastigroup Azure Spot VMs
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Azure Elastigroup updated
+    delete:
+      operationId: deleteElastigroupAzure
+      summary: Delete Elastigroup Azure
+      description: Delete an Azure Elastigroup.
+      tags:
+      - Elastigroup Azure Spot VMs
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Azure Elastigroup deleted
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

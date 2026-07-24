@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Ocean Automatic Rightsizing API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Ocean Automatic Rightsizing
+paths:
+  /ocean/aws/k8s/cluster/{clusterId}/rightSizing/suggestions:
+    get:
+      operationId: getOceanRightsizingSuggestions
+      summary: Get Ocean Rightsizing Suggestions
+      description: Retrieve container rightsizing recommendations to optimize resource allocation and cost.
+      tags:
+      - Ocean Automatic Rightsizing
+      parameters:
+      - name: clusterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Rightsizing recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/RightsizingRecommendation'
+components:
+  schemas:
+    RightsizingRecommendation:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        currentSize:
+          type: string
+        recommendedSize:
+          type: string
+        estimatedMonthlySavings:
+          type: number
+          format: float
+        justification:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

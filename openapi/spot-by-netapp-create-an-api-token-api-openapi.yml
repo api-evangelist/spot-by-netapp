@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp Audit Service Create an API Token API
+  description: Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+- url: https://api.spotinst.io
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Create an API Token
+paths:
+  /setup/user/token:
+    post:
+      operationId: createApiToken
+      summary: Create API Token
+      description: Create a new API access token for authenticating Spot API requests.
+      tags:
+      - Create an API Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tokenType:
+                      type: string
+                      enum:
+                      - permanent
+                      - temporary
+      responses:
+        '200':
+          description: API token created
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
