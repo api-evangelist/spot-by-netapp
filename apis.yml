@@ -8,9 +8,22 @@ description: >-
   for progressive delivery. The platform delivers FinOps capabilities including rightsizing recommendations, cost
   analysis, and cloud spend visibility.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spot-by-netapp.png
 tags:
   - Cloud Optimization
   - FinOps
@@ -25,40 +38,196 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: spot-by-netapp:spot-by-netapp
-    name: Spot by NetApp API
-    description: >-
-      The Spot by NetApp REST API enables programmatic management of cloud infrastructure optimization resources. Manage
-      Elastigroup auto-scaling groups across AWS, Azure, and GCP; create and configure Ocean clusters for Kubernetes
-      cost optimization; set up Stateful Nodes for persistent workloads; retrieve cost analysis and savings reports;
-      access rightsizing recommendations; and manage account configuration, API tokens, audit logs, and notification
-      subscriptions. Bearer token authentication required.
-    humanURL: https://spot.io/
-    baseURL: https://api.spotinst.io
-    tags:
-      - Cloud Optimization
-      - FinOps
-      - Kubernetes
-      - AWS
-      - Azure
-      - GCP
-      - Auto Scaling
-      - Spot Instances
-      - Cost Management
-      - DevOps
-    properties:
-      - type: Documentation
-        url: https://docs.spot.io/
-      - type: Reference
-        url: https://docs.spot.io/api/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/openapi/spot-by-netapp-openapi.yml
-      - type: GettingStarted
-        url: https://docs.spot.io/
-      - type: GitHub
-        url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-audit-service-api
+  name: Spot by NetApp Audit Service API
+  description: The Audit Service API from Spot by NetApp — 3 operation(s) for audit service.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Audit Service
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-audit-service-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-create-an-api-token-api
+  name: Spot by NetApp Create an API Token API
+  description: >-
+    The Create an API Token API from Spot by NetApp — 1 operation(s) for create an api token.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Create an API Token
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-create-an-api-token-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-elastigroup-aws-api
+  name: Spot by NetApp Elastigroup AWS API
+  description: The Elastigroup AWS API from Spot by NetApp — 6 operation(s) for elastigroup aws.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Elastigroup AWS
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-elastigroup-aws-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-elastigroup-azure-spot-vms-api
+  name: Spot by NetApp Elastigroup Azure Spot VMs API
+  description: >-
+    The Elastigroup Azure Spot VMs API from Spot by NetApp — 2 operation(s) for elastigroup azure spot
+    vms.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Elastigroup Azure Spot VMs
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-elastigroup-gcp-api
+  name: Spot by NetApp Elastigroup GCP API
+  description: The Elastigroup GCP API from Spot by NetApp — 2 operation(s) for elastigroup gcp.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Elastigroup GCP
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-elastigroup-gcp-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-health-check-service-api
+  name: Spot by NetApp Health Check Service API
+  description: >-
+    The Health Check Service API from Spot by NetApp — 1 operation(s) for health check service.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Health Check Service
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-health-check-service-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-insights-service-api
+  name: Spot by NetApp Insights Service API
+  description: The Insights Service API from Spot by NetApp — 1 operation(s) for insights service.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Insights Service
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-insights-service-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-notification-subscription-service-api
+  name: Spot by NetApp Notification Subscription Service API
+  description: >-
+    The Notification Subscription Service API from Spot by NetApp — 1 operation(s) for notification subscription
+    service.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Notification Subscription Service
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-notification-subscription-service-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-ocean-automatic-rightsizing-api
+  name: Spot by NetApp Ocean Automatic Rightsizing API
+  description: >-
+    The Ocean Automatic Rightsizing API from Spot by NetApp — 1 operation(s) for ocean automatic rightsizing.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Ocean Automatic Rightsizing
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
+- aid: spot-by-netapp:spot-by-netapp-ocean-aws-api
+  name: Spot by NetApp Ocean AWS API
+  description: The Ocean AWS API from Spot by NetApp — 3 operation(s) for ocean aws.
+  humanURL: https://spot.io/
+  baseURL: https://api.spotinst.io
+  tags:
+  - Ocean AWS
+  properties:
+  - type: OpenAPI
+    url: openapi/spot-by-netapp-ocean-aws-api-openapi.yml
+  - type: Documentation
+    url: https://docs.spot.io/
+  - type: Reference
+    url: https://docs.spot.io/api/
+  - type: GettingStarted
+    url: https://docs.spot.io/
+  - type: GitHub
+    url: https://github.com/spotinst/openapi
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/spot-by-netapp/overview
   - type: AgenticAccess
     url: agentic-access/spot-by-netapp-agentic-access.yml
   - type: DomainSecurity
