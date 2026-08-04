@@ -1,0 +1,640 @@
+{
+  "info": {
+    "_postman_id": "215f5bc4-9789-48d5-be80-2ff9a257678a",
+    "name": "Spot by NetApp Audit Service Ocean AWS API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:52.000Z",
+    "updatedAt": "2026-07-28T03:00:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-215f5bc4-9789-48d5-be80-2ff9a257678a"
+  },
+  "item": [
+    {
+      "name": "ocean",
+      "item": [
+        {
+          "name": "aws",
+          "item": [
+            {
+              "name": "k8s",
+              "item": [
+                {
+                  "name": "cluster",
+                  "item": [
+                    {
+                      "name": "{clusterId}",
+                      "item": [
+                        {
+                          "name": "costs",
+                          "item": [
+                            {
+                              "name": "Get Ocean Cluster Costs AWS",
+                              "id": "e6eabd8f-e1aa-4ac4-ae97-937b3f6ec3af",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId/costs?startTime=<dateTime>&endTime=<dateTime>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ocean",
+                                    "aws",
+                                    "k8s",
+                                    "cluster",
+                                    ":clusterId",
+                                    "costs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "startTime",
+                                      "value": "<dateTime>"
+                                    },
+                                    {
+                                      "key": "endTime",
+                                      "value": "<dateTime>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "7611c821-9276-4f56-b7bd-cbcc51ccc34a",
+                                      "key": "clusterId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve cost breakdown and savings analysis for an Ocean cluster."
+                              },
+                              "response": [
+                                {
+                                  "id": "cd4f1f50-8168-4d45-8d67-f397da04b70c",
+                                  "name": "Ocean cluster cost data",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId/costs?startTime=<dateTime>&endTime=<dateTime>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "ocean",
+                                        "aws",
+                                        "k8s",
+                                        "cluster",
+                                        ":clusterId",
+                                        "costs"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "startTime",
+                                          "value": "<dateTime>"
+                                        },
+                                        {
+                                          "key": "endTime",
+                                          "value": "<dateTime>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "clusterId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:00:52.000Z",
+                                  "updatedAt": "2026-07-28T03:00:52.000Z",
+                                  "uid": "35240-cd4f1f50-8168-4d45-8d67-f397da04b70c"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:00:52.000Z",
+                              "updatedAt": "2026-07-28T03:00:52.000Z",
+                              "uid": "35240-e6eabd8f-e1aa-4ac4-ae97-937b3f6ec3af"
+                            }
+                          ],
+                          "id": "69aab6ce-44be-491c-b903-32903a462b66",
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-69aab6ce-44be-491c-b903-32903a462b66"
+                        },
+                        {
+                          "name": "Get Ocean Cluster AWS",
+                          "id": "8d4163b1-957f-4b43-93fc-056b70f72ccd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ocean",
+                                "aws",
+                                "k8s",
+                                "cluster",
+                                ":clusterId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c5e26928-a7e2-4782-9298-b8eddd913997",
+                                  "key": "clusterId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve details for a specific Ocean cluster."
+                          },
+                          "response": [
+                            {
+                              "id": "db3570bf-834f-4e71-94ce-2ef1dc2d0d11",
+                              "name": "Ocean cluster details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ocean",
+                                    "aws",
+                                    "k8s",
+                                    "cluster",
+                                    ":clusterId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:00:52.000Z",
+                              "updatedAt": "2026-07-28T03:00:52.000Z",
+                              "uid": "35240-db3570bf-834f-4e71-94ce-2ef1dc2d0d11"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-8d4163b1-957f-4b43-93fc-056b70f72ccd"
+                        },
+                        {
+                          "name": "Update Ocean Cluster AWS",
+                          "id": "e3c32ca8-a8e9-4209-9b73-9b3c79173c68",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ocean",
+                                "aws",
+                                "k8s",
+                                "cluster",
+                                ":clusterId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c493974a-3bc3-4cbf-bb52-eaa8f66226e3",
+                                  "key": "clusterId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update an existing Ocean cluster configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "89bd6216-d37e-4ae3-8e88-0af77800cd11",
+                              "name": "Ocean cluster updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ocean",
+                                    "aws",
+                                    "k8s",
+                                    "cluster",
+                                    ":clusterId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:00:52.000Z",
+                              "updatedAt": "2026-07-28T03:00:52.000Z",
+                              "uid": "35240-89bd6216-d37e-4ae3-8e88-0af77800cd11"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-e3c32ca8-a8e9-4209-9b73-9b3c79173c68"
+                        },
+                        {
+                          "name": "Delete Ocean Cluster AWS",
+                          "id": "ddafbd35-7220-4e68-ba27-a3f5edf0cde9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ocean",
+                                "aws",
+                                "k8s",
+                                "cluster",
+                                ":clusterId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d95e3994-3a75-4be2-be00-fda0d0da8ccf",
+                                  "key": "clusterId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete an Ocean cluster."
+                          },
+                          "response": [
+                            {
+                              "id": "99dba365-eb6b-4c08-bde3-d69b12cce2d4",
+                              "name": "Ocean cluster deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "ocean",
+                                    "aws",
+                                    "k8s",
+                                    "cluster",
+                                    ":clusterId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "clusterId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:00:52.000Z",
+                              "updatedAt": "2026-07-28T03:00:52.000Z",
+                              "uid": "35240-99dba365-eb6b-4c08-bde3-d69b12cce2d4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-ddafbd35-7220-4e68-ba27-a3f5edf0cde9"
+                        }
+                      ],
+                      "id": "08ecb8e3-56e0-4093-ba7a-fa0300ae13a5",
+                      "createdAt": "2026-07-28T03:00:52.000Z",
+                      "updatedAt": "2026-07-28T03:00:52.000Z",
+                      "uid": "35240-08ecb8e3-56e0-4093-ba7a-fa0300ae13a5"
+                    },
+                    {
+                      "name": "List Ocean Clusters AWS",
+                      "id": "4a204b70-7463-4aca-b9ee-85795ed5b859",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ocean/aws/k8s/cluster?accountId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ocean",
+                            "aws",
+                            "k8s",
+                            "cluster"
+                          ],
+                          "query": [
+                            {
+                              "key": "accountId",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve all Ocean clusters for Kubernetes on AWS."
+                      },
+                      "response": [
+                        {
+                          "id": "c3c89516-9732-4da2-95be-151fba92c88f",
+                          "name": "List of Ocean clusters",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/ocean/aws/k8s/cluster?accountId=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ocean",
+                                "aws",
+                                "k8s",
+                                "cluster"
+                              ],
+                              "query": [
+                                {
+                                  "key": "accountId",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"response\": {\n    \"items\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"region\": \"<string>\",\n        \"cloudProvider\": \"gcp\",\n        \"autoScaler\": {\n          \"isEnabled\": \"<boolean>\",\n          \"cooldown\": \"<integer>\"\n        },\n        \"capacity\": {\n          \"minimum\": \"<integer>\",\n          \"maximum\": \"<integer>\",\n          \"target\": \"<integer>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"region\": \"<string>\",\n        \"cloudProvider\": \"aws\",\n        \"autoScaler\": {\n          \"isEnabled\": \"<boolean>\",\n          \"cooldown\": \"<integer>\"\n        },\n        \"capacity\": {\n          \"minimum\": \"<integer>\",\n          \"maximum\": \"<integer>\",\n          \"target\": \"<integer>\"\n        }\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-c3c89516-9732-4da2-95be-151fba92c88f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:52.000Z",
+                      "updatedAt": "2026-07-28T03:00:52.000Z",
+                      "uid": "35240-4a204b70-7463-4aca-b9ee-85795ed5b859"
+                    },
+                    {
+                      "name": "Create Ocean Cluster AWS",
+                      "id": "cee65748-b57a-4041-a75a-586c43425a80",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cluster\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"cloudProvider\": \"azure\",\n    \"autoScaler\": {\n      \"isEnabled\": \"<boolean>\",\n      \"cooldown\": \"<integer>\"\n    },\n    \"capacity\": {\n      \"minimum\": \"<integer>\",\n      \"maximum\": \"<integer>\",\n      \"target\": \"<integer>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ocean/aws/k8s/cluster",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ocean",
+                            "aws",
+                            "k8s",
+                            "cluster"
+                          ]
+                        },
+                        "description": "Create a new Ocean cluster for Kubernetes cost optimization on AWS."
+                      },
+                      "response": [
+                        {
+                          "id": "a2e9dc3a-d40b-477d-827b-6c046a420ff4",
+                          "name": "Ocean cluster created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"cluster\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"cloudProvider\": \"azure\",\n    \"autoScaler\": {\n      \"isEnabled\": \"<boolean>\",\n      \"cooldown\": \"<integer>\"\n    },\n    \"capacity\": {\n      \"minimum\": \"<integer>\",\n      \"maximum\": \"<integer>\",\n      \"target\": \"<integer>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ocean/aws/k8s/cluster",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ocean",
+                                "aws",
+                                "k8s",
+                                "cluster"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:52.000Z",
+                          "updatedAt": "2026-07-28T03:00:52.000Z",
+                          "uid": "35240-a2e9dc3a-d40b-477d-827b-6c046a420ff4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:52.000Z",
+                      "updatedAt": "2026-07-28T03:00:52.000Z",
+                      "uid": "35240-cee65748-b57a-4041-a75a-586c43425a80"
+                    }
+                  ],
+                  "id": "09c71427-278a-4948-b761-f7961b4c0a59",
+                  "createdAt": "2026-07-28T03:00:52.000Z",
+                  "updatedAt": "2026-07-28T03:00:52.000Z",
+                  "uid": "35240-09c71427-278a-4948-b761-f7961b4c0a59"
+                }
+              ],
+              "id": "6133c799-31ec-4a99-9443-3195ad15a938",
+              "createdAt": "2026-07-28T03:00:52.000Z",
+              "updatedAt": "2026-07-28T03:00:52.000Z",
+              "uid": "35240-6133c799-31ec-4a99-9443-3195ad15a938"
+            }
+          ],
+          "id": "1c0a406f-55e2-43f6-b332-a5cc41a4d177",
+          "createdAt": "2026-07-28T03:00:52.000Z",
+          "updatedAt": "2026-07-28T03:00:52.000Z",
+          "uid": "35240-1c0a406f-55e2-43f6-b332-a5cc41a4d177"
+        }
+      ],
+      "id": "fe6f48e8-0c2b-4340-898f-b8dee3a778c1",
+      "createdAt": "2026-07-28T03:00:52.000Z",
+      "updatedAt": "2026-07-28T03:00:52.000Z",
+      "uid": "35240-fe6f48e8-0c2b-4340-898f-b8dee3a778c1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "info": {
+    "_postman_id": "f44b8bc0-e4bd-418a-95ca-1e6880ffc877",
+    "name": "Spot by NetApp Audit Service Elastigroup Azure Spot VMs API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:44.000Z",
+    "updatedAt": "2026-07-28T03:00:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f44b8bc0-e4bd-418a-95ca-1e6880ffc877"
+  },
+  "item": [
+    {
+      "name": "azure",
+      "item": [
+        {
+          "name": "compute",
+          "item": [
+            {
+              "name": "elastigroup",
+              "item": [
+                {
+                  "name": "{groupId}",
+                  "item": [
+                    {
+                      "name": "Get Elastigroup Azure",
+                      "id": "d116dea8-c473-4c60-96a5-d8185f21a485",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "azure",
+                            "compute",
+                            "elastigroup",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "37c0ad83-e2ff-4b53-9709-ea455c223c10",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific Azure Elastigroup by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "ec4aa611-ca47-4d50-905f-7e8a88733ba3",
+                          "name": "Azure Elastigroup details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "azure",
+                                "compute",
+                                "elastigroup",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:45.000Z",
+                          "updatedAt": "2026-07-28T03:00:45.000Z",
+                          "uid": "35240-ec4aa611-ca47-4d50-905f-7e8a88733ba3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:45.000Z",
+                      "updatedAt": "2026-07-28T03:00:45.000Z",
+                      "uid": "35240-d116dea8-c473-4c60-96a5-d8185f21a485"
+                    },
+                    {
+                      "name": "Update Elastigroup Azure",
+                      "id": "59c8723a-7192-4184-817c-6ca25aca64be",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "azure",
+                            "compute",
+                            "elastigroup",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a8e6fc05-83a2-4fc2-a356-85df215d71a6",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an Azure Elastigroup configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "397d504d-5937-4395-9ab5-c25d318b957f",
+                          "name": "Azure Elastigroup updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "azure",
+                                "compute",
+                                "elastigroup",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:45.000Z",
+                          "updatedAt": "2026-07-28T03:00:45.000Z",
+                          "uid": "35240-397d504d-5937-4395-9ab5-c25d318b957f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:45.000Z",
+                      "updatedAt": "2026-07-28T03:00:45.000Z",
+                      "uid": "35240-59c8723a-7192-4184-817c-6ca25aca64be"
+                    },
+                    {
+                      "name": "Delete Elastigroup Azure",
+                      "id": "2f334f8c-263b-42a8-b6a6-5aead6b2fa5a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "azure",
+                            "compute",
+                            "elastigroup",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2504ab15-79a2-4e9a-a949-51115a431af5",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete an Azure Elastigroup."
+                      },
+                      "response": [
+                        {
+                          "id": "f8d501f0-cf63-4bd8-a73f-69398f031859",
+                          "name": "Azure Elastigroup deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/azure/compute/elastigroup/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "azure",
+                                "compute",
+                                "elastigroup",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:45.000Z",
+                          "updatedAt": "2026-07-28T03:00:45.000Z",
+                          "uid": "35240-f8d501f0-cf63-4bd8-a73f-69398f031859"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:45.000Z",
+                      "updatedAt": "2026-07-28T03:00:45.000Z",
+                      "uid": "35240-2f334f8c-263b-42a8-b6a6-5aead6b2fa5a"
+                    }
+                  ],
+                  "id": "2324f19f-e341-4165-ac0e-0026bd69dcd7",
+                  "createdAt": "2026-07-28T03:00:45.000Z",
+                  "updatedAt": "2026-07-28T03:00:45.000Z",
+                  "uid": "35240-2324f19f-e341-4165-ac0e-0026bd69dcd7"
+                },
+                {
+                  "name": "List Elastigroups Azure",
+                  "id": "8abce4dd-7c01-41fb-8ed8-89a6c831a054",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/azure/compute/elastigroup?accountId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "azure",
+                        "compute",
+                        "elastigroup"
+                      ],
+                      "query": [
+                        {
+                          "key": "accountId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all Elastigroup instances on Microsoft Azure."
+                  },
+                  "response": [
+                    {
+                      "id": "82abc258-2a84-4441-b5d5-d408185efdd6",
+                      "name": "List of Azure Elastigroups",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/azure/compute/elastigroup?accountId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "azure",
+                            "compute",
+                            "elastigroup"
+                          ],
+                          "query": [
+                            {
+                              "key": "accountId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:45.000Z",
+                      "updatedAt": "2026-07-28T03:00:45.000Z",
+                      "uid": "35240-82abc258-2a84-4441-b5d5-d408185efdd6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:45.000Z",
+                  "updatedAt": "2026-07-28T03:00:45.000Z",
+                  "uid": "35240-8abce4dd-7c01-41fb-8ed8-89a6c831a054"
+                },
+                {
+                  "name": "Create Elastigroup Azure",
+                  "id": "91d40c0b-c634-4828-ae27-71463b24bc82",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/azure/compute/elastigroup",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "azure",
+                        "compute",
+                        "elastigroup"
+                      ]
+                    },
+                    "description": "Create a new Elastigroup for Azure Spot VMs."
+                  },
+                  "response": [
+                    {
+                      "id": "4b57c040-67cf-4c12-90f0-3d8c7eddf0e6",
+                      "name": "Azure Elastigroup created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/azure/compute/elastigroup",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "azure",
+                            "compute",
+                            "elastigroup"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:45.000Z",
+                      "updatedAt": "2026-07-28T03:00:45.000Z",
+                      "uid": "35240-4b57c040-67cf-4c12-90f0-3d8c7eddf0e6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:45.000Z",
+                  "updatedAt": "2026-07-28T03:00:45.000Z",
+                  "uid": "35240-91d40c0b-c634-4828-ae27-71463b24bc82"
+                }
+              ],
+              "id": "4f5bc867-e9bf-4f4a-9173-416e48a5c010",
+              "createdAt": "2026-07-28T03:00:45.000Z",
+              "updatedAt": "2026-07-28T03:00:45.000Z",
+              "uid": "35240-4f5bc867-e9bf-4f4a-9173-416e48a5c010"
+            }
+          ],
+          "id": "94cc9343-78c0-4334-a747-a091d7b876dd",
+          "createdAt": "2026-07-28T03:00:45.000Z",
+          "updatedAt": "2026-07-28T03:00:45.000Z",
+          "uid": "35240-94cc9343-78c0-4334-a747-a091d7b876dd"
+        }
+      ],
+      "id": "82dfa62d-227b-41a1-b5b0-ed8600497f61",
+      "createdAt": "2026-07-28T03:00:45.000Z",
+      "updatedAt": "2026-07-28T03:00:45.000Z",
+      "uid": "35240-82dfa62d-227b-41a1-b5b0-ed8600497f61"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

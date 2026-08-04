@@ -1,0 +1,602 @@
+{
+  "info": {
+    "_postman_id": "c650aed5-969a-4cf0-bb84-b1ad422a5738",
+    "name": "Spot by NetApp Audit Service API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:41.000Z",
+    "updatedAt": "2026-07-28T03:00:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c650aed5-969a-4cf0-bb84-b1ad422a5738"
+  },
+  "item": [
+    {
+      "name": "setup",
+      "item": [
+        {
+          "name": "account",
+          "item": [
+            {
+              "name": "{accountId}",
+              "item": [
+                {
+                  "name": "Get Account",
+                  "id": "00facf21-5ba3-485f-a012-6f62c2b5b294",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/account/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "account",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "44895a1a-aaa9-4e90-9f75-75d6dd6fb569",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details for a specific Spot account."
+                  },
+                  "response": [
+                    {
+                      "id": "d7e748fe-7c54-44ca-9217-ea83b401fdf2",
+                      "name": "Account details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/setup/account/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "setup",
+                            "account",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:41.000Z",
+                      "updatedAt": "2026-07-28T03:00:41.000Z",
+                      "uid": "35240-d7e748fe-7c54-44ca-9217-ea83b401fdf2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-00facf21-5ba3-485f-a012-6f62c2b5b294"
+                },
+                {
+                  "name": "Update Account",
+                  "id": "54c9b213-e857-4b0d-9dbb-156c3f692dfa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/account/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "account",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e919bc38-132b-4480-85df-0259304adaab",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update account configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "3a6aaf7d-0e52-4d3e-a27b-961c950e1a2e",
+                      "name": "Account updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/setup/account/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "setup",
+                            "account",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:41.000Z",
+                      "updatedAt": "2026-07-28T03:00:41.000Z",
+                      "uid": "35240-3a6aaf7d-0e52-4d3e-a27b-961c950e1a2e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-54c9b213-e857-4b0d-9dbb-156c3f692dfa"
+                },
+                {
+                  "name": "Delete Account",
+                  "id": "9600e4c5-95f6-4ada-9cf7-232456018f06",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/account/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "account",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "11197093-4d73-47c2-85a7-eead5a427271",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a Spot account."
+                  },
+                  "response": [
+                    {
+                      "id": "85c72c61-62fb-4300-b423-ae15ed18f81d",
+                      "name": "Account deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/setup/account/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "setup",
+                            "account",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:41.000Z",
+                      "updatedAt": "2026-07-28T03:00:41.000Z",
+                      "uid": "35240-85c72c61-62fb-4300-b423-ae15ed18f81d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-9600e4c5-95f6-4ada-9cf7-232456018f06"
+                }
+              ],
+              "id": "b15ecf3b-8001-45f3-a5b9-e749c5092a2b",
+              "createdAt": "2026-07-28T03:00:41.000Z",
+              "updatedAt": "2026-07-28T03:00:41.000Z",
+              "uid": "35240-b15ecf3b-8001-45f3-a5b9-e749c5092a2b"
+            },
+            {
+              "name": "List Accounts",
+              "id": "2b1e94a3-3f39-4c37-a905-495fa92fa95d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/setup/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "setup",
+                    "account"
+                  ]
+                },
+                "description": "Retrieve all Spot accounts associated with the authenticated organization."
+              },
+              "response": [
+                {
+                  "id": "5cbce42a-4b70-4ae3-a5af-1c33ce5416ba",
+                  "name": "List of Spot accounts",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-5cbce42a-4b70-4ae3-a5af-1c33ce5416ba"
+                }
+              ],
+              "createdAt": "2026-07-28T03:00:41.000Z",
+              "updatedAt": "2026-07-28T03:00:41.000Z",
+              "uid": "35240-2b1e94a3-3f39-4c37-a905-495fa92fa95d"
+            },
+            {
+              "name": "Create Account",
+              "id": "2c15313e-62d0-43c9-8b85-04e98f1a17d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"providerExternalId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/setup/account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "setup",
+                    "account"
+                  ]
+                },
+                "description": "Create a new Spot account for a cloud provider."
+              },
+              "response": [
+                {
+                  "id": "9c52140b-2df6-4dd7-bdbf-c7a8da7b90c0",
+                  "name": "Account created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account\": {\n    \"name\": \"<string>\",\n    \"providerExternalId\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-9c52140b-2df6-4dd7-bdbf-c7a8da7b90c0"
+                }
+              ],
+              "createdAt": "2026-07-28T03:00:41.000Z",
+              "updatedAt": "2026-07-28T03:00:41.000Z",
+              "uid": "35240-2c15313e-62d0-43c9-8b85-04e98f1a17d2"
+            }
+          ],
+          "id": "f2e18cd4-a6f6-4fb3-8bdd-02eb8a0d5c22",
+          "createdAt": "2026-07-28T03:00:41.000Z",
+          "updatedAt": "2026-07-28T03:00:41.000Z",
+          "uid": "35240-f2e18cd4-a6f6-4fb3-8bdd-02eb8a0d5c22"
+        }
+      ],
+      "id": "4dab6d33-6cbd-4d96-8c16-365bf86c98c4",
+      "createdAt": "2026-07-28T03:00:41.000Z",
+      "updatedAt": "2026-07-28T03:00:41.000Z",
+      "uid": "35240-4dab6d33-6cbd-4d96-8c16-365bf86c98c4"
+    },
+    {
+      "name": "audit",
+      "item": [
+        {
+          "name": "log",
+          "item": [
+            {
+              "name": "Get Audit Log",
+              "id": "e3f06077-4f74-4ce8-aead-ddea53766326",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/audit/log?accountId=<string>&fromDate=<date>&toDate=<date>&resourceType=<string>&limit=100",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "audit",
+                    "log"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "resourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ]
+                },
+                "description": "Retrieve audit log events for account activity and API calls."
+              },
+              "response": [
+                {
+                  "id": "5aefbb51-2b06-4fa7-84b9-dd3e776c81d1",
+                  "name": "Audit log events",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/audit/log?accountId=<string>&fromDate=<date>&toDate=<date>&resourceType=<string>&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "audit",
+                        "log"
+                      ],
+                      "query": [
+                        {
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "fromDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "toDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "resourceType",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"items\": [\n      {\n        \"id\": \"<string>\",\n        \"eventType\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"resourceId\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"userId\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"data\": {\n          \"cillum8\": \"laborum voluptate sit\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"eventType\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"resourceId\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"userId\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"data\": {\n          \"fugiat35\": -34665514,\n          \"ipsum_9\": \"id voluptate\"\n        }\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T03:00:41.000Z",
+                  "updatedAt": "2026-07-28T03:00:41.000Z",
+                  "uid": "35240-5aefbb51-2b06-4fa7-84b9-dd3e776c81d1"
+                }
+              ],
+              "createdAt": "2026-07-28T03:00:41.000Z",
+              "updatedAt": "2026-07-28T03:00:41.000Z",
+              "uid": "35240-e3f06077-4f74-4ce8-aead-ddea53766326"
+            }
+          ],
+          "id": "985502ce-058b-4c49-b922-7f7a5ee8c944",
+          "createdAt": "2026-07-28T03:00:41.000Z",
+          "updatedAt": "2026-07-28T03:00:41.000Z",
+          "uid": "35240-985502ce-058b-4c49-b922-7f7a5ee8c944"
+        }
+      ],
+      "id": "72a93f21-2990-49bd-afb4-9d1d29d8c197",
+      "createdAt": "2026-07-28T03:00:41.000Z",
+      "updatedAt": "2026-07-28T03:00:41.000Z",
+      "uid": "35240-72a93f21-2990-49bd-afb4-9d1d29d8c197"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

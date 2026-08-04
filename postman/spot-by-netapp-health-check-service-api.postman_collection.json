@@ -1,0 +1,98 @@
+{
+  "info": {
+    "_postman_id": "bcd730da-3c87-4747-bbd0-78810e796525",
+    "name": "Spot by NetApp Audit Service Health Check Service API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:46.000Z",
+    "updatedAt": "2026-07-28T03:00:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bcd730da-3c87-4747-bbd0-78810e796525"
+  },
+  "item": [
+    {
+      "name": "healthCheck",
+      "item": [
+        {
+          "name": "Health Check",
+          "id": "e7097da8-db07-4f01-80c6-536af6768a29",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/healthCheck",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "healthCheck"
+              ]
+            },
+            "description": "Verify that the Spot API is operational."
+          },
+          "response": [
+            {
+              "id": "2ce31ba3-6ff6-48d6-9ca3-878ab608e93c",
+              "name": "API is healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/healthCheck",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "healthCheck"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:00:47.000Z",
+              "updatedAt": "2026-07-28T03:00:47.000Z",
+              "uid": "35240-2ce31ba3-6ff6-48d6-9ca3-878ab608e93c"
+            }
+          ],
+          "createdAt": "2026-07-28T03:00:47.000Z",
+          "updatedAt": "2026-07-28T03:00:47.000Z",
+          "uid": "35240-e7097da8-db07-4f01-80c6-536af6768a29"
+        }
+      ],
+      "id": "367d0402-7091-4d7f-bf0a-58f2d03ae5a2",
+      "createdAt": "2026-07-28T03:00:47.000Z",
+      "updatedAt": "2026-07-28T03:00:47.000Z",
+      "uid": "35240-367d0402-7091-4d7f-bf0a-58f2d03ae5a2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

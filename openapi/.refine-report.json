@@ -1,0 +1,32 @@
+{
+  "provider": "spot-by-netapp",
+  "sources": [
+    "spot-by-netapp-audit-service-api-openapi.yml",
+    "spot-by-netapp-create-an-api-token-api-openapi.yml",
+    "spot-by-netapp-elastigroup-aws-api-openapi.yml",
+    "spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml",
+    "spot-by-netapp-elastigroup-gcp-api-openapi.yml",
+    "spot-by-netapp-health-check-service-api-openapi.yml",
+    "spot-by-netapp-insights-service-api-openapi.yml",
+    "spot-by-netapp-notification-subscription-service-api-openapi.yml",
+    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml",
+    "spot-by-netapp-ocean-aws-api-openapi.yml"
+  ],
+  "outputs": [
+    "spot-by-netapp-audit-service-api-openapi.yml",
+    "spot-by-netapp-create-an-api-token-api-openapi.yml",
+    "spot-by-netapp-elastigroup-aws-api-openapi.yml",
+    "spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml",
+    "spot-by-netapp-elastigroup-gcp-api-openapi.yml",
+    "spot-by-netapp-health-check-service-api-openapi.yml",
+    "spot-by-netapp-insights-service-api-openapi.yml",
+    "spot-by-netapp-notification-subscription-service-api-openapi.yml",
+    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml",
+    "spot-by-netapp-ocean-aws-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

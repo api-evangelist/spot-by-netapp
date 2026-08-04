@@ -1,0 +1,496 @@
+{
+  "info": {
+    "_postman_id": "ad278572-f2bd-4bff-bf21-b50ef0ccc071",
+    "name": "Spot by NetApp Audit Service Elastigroup GCP API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:45.000Z",
+    "updatedAt": "2026-07-28T03:00:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ad278572-f2bd-4bff-bf21-b50ef0ccc071"
+  },
+  "item": [
+    {
+      "name": "gcp",
+      "item": [
+        {
+          "name": "gce",
+          "item": [
+            {
+              "name": "group",
+              "item": [
+                {
+                  "name": "{groupId}",
+                  "item": [
+                    {
+                      "name": "Get Elastigroup GCP",
+                      "id": "54ea3b47-9844-4911-ba50-e791a22a5730",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gcp",
+                            "gce",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4f63f8fb-3cb8-40b6-a45d-41d95f89b738",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific GCP Elastigroup by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "d4f3c398-931d-4656-b384-baf9d41dd5e6",
+                          "name": "GCP Elastigroup details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gcp",
+                                "gce",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:46.000Z",
+                          "updatedAt": "2026-07-28T03:00:46.000Z",
+                          "uid": "35240-d4f3c398-931d-4656-b384-baf9d41dd5e6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:46.000Z",
+                      "updatedAt": "2026-07-28T03:00:46.000Z",
+                      "uid": "35240-54ea3b47-9844-4911-ba50-e791a22a5730"
+                    },
+                    {
+                      "name": "Update Elastigroup GCP",
+                      "id": "a18719ca-685e-4741-b2ec-dd08a378f07b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gcp",
+                            "gce",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e56411dd-7c5f-4426-8e56-4a33bc4848bf",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update a GCP Elastigroup configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "07af68e7-b04e-4812-a293-4e3dd7b76412",
+                          "name": "GCP Elastigroup updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gcp",
+                                "gce",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:46.000Z",
+                          "updatedAt": "2026-07-28T03:00:46.000Z",
+                          "uid": "35240-07af68e7-b04e-4812-a293-4e3dd7b76412"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:46.000Z",
+                      "updatedAt": "2026-07-28T03:00:46.000Z",
+                      "uid": "35240-a18719ca-685e-4741-b2ec-dd08a378f07b"
+                    },
+                    {
+                      "name": "Delete Elastigroup GCP",
+                      "id": "2f543b58-c3ff-483a-ba60-1e011b1fca9c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gcp",
+                            "gce",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a1fcd17e-65e0-4c04-8c66-419d5b68b7de",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete a GCP Elastigroup."
+                      },
+                      "response": [
+                        {
+                          "id": "f114c433-71da-4cdb-bec8-af2828e202ea",
+                          "name": "GCP Elastigroup deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/gcp/gce/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "gcp",
+                                "gce",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:46.000Z",
+                          "updatedAt": "2026-07-28T03:00:46.000Z",
+                          "uid": "35240-f114c433-71da-4cdb-bec8-af2828e202ea"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:46.000Z",
+                      "updatedAt": "2026-07-28T03:00:46.000Z",
+                      "uid": "35240-2f543b58-c3ff-483a-ba60-1e011b1fca9c"
+                    }
+                  ],
+                  "id": "8ccf18b0-4879-4ad2-8ca8-9d2d1a25dd6e",
+                  "createdAt": "2026-07-28T03:00:46.000Z",
+                  "updatedAt": "2026-07-28T03:00:46.000Z",
+                  "uid": "35240-8ccf18b0-4879-4ad2-8ca8-9d2d1a25dd6e"
+                },
+                {
+                  "name": "List Elastigroups GCP",
+                  "id": "f5ac12d4-1c71-4616-aa7d-15870f776a6e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/gcp/gce/group?accountId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gcp",
+                        "gce",
+                        "group"
+                      ],
+                      "query": [
+                        {
+                          "key": "accountId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all Elastigroup instances on Google Cloud Platform."
+                  },
+                  "response": [
+                    {
+                      "id": "5d22e5a9-dad7-4a2f-9adb-268f317f2860",
+                      "name": "List of GCP Elastigroups",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/gcp/gce/group?accountId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gcp",
+                            "gce",
+                            "group"
+                          ],
+                          "query": [
+                            {
+                              "key": "accountId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:46.000Z",
+                      "updatedAt": "2026-07-28T03:00:46.000Z",
+                      "uid": "35240-5d22e5a9-dad7-4a2f-9adb-268f317f2860"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:46.000Z",
+                  "updatedAt": "2026-07-28T03:00:46.000Z",
+                  "uid": "35240-f5ac12d4-1c71-4616-aa7d-15870f776a6e"
+                },
+                {
+                  "name": "Create Elastigroup GCP",
+                  "id": "ca6b50fb-9a4c-4afc-aa8e-8013f32f4a46",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/gcp/gce/group",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "gcp",
+                        "gce",
+                        "group"
+                      ]
+                    },
+                    "description": "Create a new Elastigroup for Google Cloud Preemptible VMs."
+                  },
+                  "response": [
+                    {
+                      "id": "79aefe67-639b-41e9-a219-2bdaf30683d5",
+                      "name": "GCP Elastigroup created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/gcp/gce/group",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "gcp",
+                            "gce",
+                            "group"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:46.000Z",
+                      "updatedAt": "2026-07-28T03:00:46.000Z",
+                      "uid": "35240-79aefe67-639b-41e9-a219-2bdaf30683d5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:46.000Z",
+                  "updatedAt": "2026-07-28T03:00:46.000Z",
+                  "uid": "35240-ca6b50fb-9a4c-4afc-aa8e-8013f32f4a46"
+                }
+              ],
+              "id": "299c37af-7fbb-4a14-a065-c668774f5e13",
+              "createdAt": "2026-07-28T03:00:46.000Z",
+              "updatedAt": "2026-07-28T03:00:46.000Z",
+              "uid": "35240-299c37af-7fbb-4a14-a065-c668774f5e13"
+            }
+          ],
+          "id": "f279b3a6-7171-443d-b534-56ef11a58407",
+          "createdAt": "2026-07-28T03:00:46.000Z",
+          "updatedAt": "2026-07-28T03:00:46.000Z",
+          "uid": "35240-f279b3a6-7171-443d-b534-56ef11a58407"
+        }
+      ],
+      "id": "d643596d-a0c8-4426-8248-0ad540d70a13",
+      "createdAt": "2026-07-28T03:00:46.000Z",
+      "updatedAt": "2026-07-28T03:00:46.000Z",
+      "uid": "35240-d643596d-a0c8-4426-8248-0ad540d70a13"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

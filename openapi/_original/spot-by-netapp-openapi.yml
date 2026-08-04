@@ -1,0 +1,935 @@
+openapi: 3.0.0
+info:
+  title: Spot by NetApp API
+  description: >-
+    Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure
+    optimization platform providing automated cost optimization, scaling, and management for
+    cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup
+    (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization),
+    Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface.
+    Supports Bearer Token authentication against the Spot platform API.
+  version: '1.0'
+  contact:
+    email: support@spot.io
+    url: https://docs.spot.io/
+  termsOfService: https://spot.io/terms-of-service/
+  x-logo:
+    url: https://spec.dev.spot.io/flexera-spot.png
+    altText: Spot by NetApp
+servers:
+  - url: https://api.spotinst.io
+    description: Production server
+security:
+  - BearerAuth: []
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ElastigroupAWS:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Elastigroup unique identifier
+        name:
+          type: string
+          description: Group name
+        description:
+          type: string
+        region:
+          type: string
+          description: AWS region
+        capacity:
+          type: object
+          properties:
+            minimum:
+              type: integer
+            maximum:
+              type: integer
+            target:
+              type: integer
+        compute:
+          type: object
+          properties:
+            instanceTypes:
+              type: object
+              properties:
+                ondemand:
+                  type: string
+                spot:
+                  type: array
+                  items:
+                    type: string
+        strategy:
+          type: object
+          properties:
+            risk:
+              type: integer
+              description: Spot instance risk percentage (0-100)
+            onDemandCount:
+              type: integer
+            availabilityVsCost:
+              type: string
+    OceanCluster:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        cloudProvider:
+          type: string
+          enum: [aws, azure, gcp]
+        autoScaler:
+          type: object
+          properties:
+            isEnabled:
+              type: boolean
+            cooldown:
+              type: integer
+        capacity:
+          type: object
+          properties:
+            minimum:
+              type: integer
+            maximum:
+              type: integer
+            target:
+              type: integer
+    StatefulNode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        region:
+          type: string
+        state:
+          type: string
+          enum: [running, stopped, paused, deallocating]
+        strategy:
+          type: object
+          properties:
+            preferredLifecycle:
+              type: string
+              enum: [spot, od]
+            fallbackToOnDemand:
+              type: boolean
+    CostSavings:
+      type: object
+      properties:
+        actualCost:
+          type: number
+          format: float
+          description: Actual spend with Spot optimization
+        potentialCost:
+          type: number
+          format: float
+          description: What cost would be without optimization
+        savings:
+          type: number
+          format: float
+        savingsPercentage:
+          type: number
+          format: float
+        currency:
+          type: string
+          default: USD
+    RightsizingRecommendation:
+      type: object
+      properties:
+        resourceId:
+          type: string
+        resourceType:
+          type: string
+        currentSize:
+          type: string
+        recommendedSize:
+          type: string
+        estimatedMonthlySavings:
+          type: number
+          format: float
+        justification:
+          type: string
+    AuditEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        eventType:
+          type: string
+        resourceType:
+          type: string
+        resourceId:
+          type: string
+        accountId:
+          type: string
+        userId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        data:
+          type: object
+          additionalProperties: true
+paths:
+  /aws/ec2/group:
+    get:
+      operationId: listElastigroupsAWS
+      summary: List Elastigroups AWS
+      description: Retrieve all Elastigroup instances for the authenticated account on AWS.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          description: Spot Account ID to filter by
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of Elastigroups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    type: object
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ElastigroupAWS'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createElastigroupAWS
+      summary: Create Elastigroup AWS
+      description: Create a new Elastigroup for intelligent auto-scaling on AWS with Spot instances.
+      tags:
+        - Elastigroup AWS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                group:
+                  $ref: '#/components/schemas/ElastigroupAWS'
+      responses:
+        '200':
+          description: Elastigroup created
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+  /aws/ec2/group/{groupId}:
+    get:
+      operationId: getElastigroupAWS
+      summary: Get Elastigroup AWS
+      description: Retrieve a specific Elastigroup by ID.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: Elastigroup identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elastigroup details
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Not found
+    put:
+      operationId: updateElastigroupAWS
+      summary: Update Elastigroup AWS
+      description: Update an existing Elastigroup configuration.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Elastigroup updated
+    delete:
+      operationId: deleteElastigroupAWS
+      summary: Delete Elastigroup AWS
+      description: Delete an Elastigroup and all associated resources.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elastigroup deleted
+  /aws/ec2/group/{groupId}/scale/up:
+    put:
+      operationId: scaleUpElastigroupAWS
+      summary: Scale Up Elastigroup AWS
+      description: Scale up an Elastigroup by adding capacity.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: adjustment
+          in: query
+          required: true
+          description: Number of instances to add
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Scale up initiated
+  /aws/ec2/group/{groupId}/scale/down:
+    put:
+      operationId: scaleDownElastigroupAWS
+      summary: Scale Down Elastigroup AWS
+      description: Scale down an Elastigroup by removing capacity.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: adjustment
+          in: query
+          required: true
+          description: Number of instances to remove
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Scale down initiated
+  /aws/ec2/group/{groupId}/status:
+    get:
+      operationId: getElastigroupStatusAWS
+      summary: Get Elastigroup Status AWS
+      description: Retrieve the current status and instance details for an Elastigroup.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Elastigroup status
+  /aws/ec2/group/{groupId}/costs:
+    get:
+      operationId: getElastigroupCostsAWS
+      summary: Get Elastigroup Costs AWS
+      description: Retrieve cost analysis and savings for an Elastigroup.
+      tags:
+        - Elastigroup AWS
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: toDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Cost data
+  /ocean/aws/k8s/cluster:
+    get:
+      operationId: listOceanClustersAWS
+      summary: List Ocean Clusters AWS
+      description: Retrieve all Ocean clusters for Kubernetes on AWS.
+      tags:
+        - Ocean AWS
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of Ocean clusters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/OceanCluster'
+    post:
+      operationId: createOceanClusterAWS
+      summary: Create Ocean Cluster AWS
+      description: Create a new Ocean cluster for Kubernetes cost optimization on AWS.
+      tags:
+        - Ocean AWS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cluster:
+                  $ref: '#/components/schemas/OceanCluster'
+      responses:
+        '200':
+          description: Ocean cluster created
+  /ocean/aws/k8s/cluster/{clusterId}:
+    get:
+      operationId: getOceanClusterAWS
+      summary: Get Ocean Cluster AWS
+      description: Retrieve details for a specific Ocean cluster.
+      tags:
+        - Ocean AWS
+      parameters:
+        - name: clusterId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ocean cluster details
+    put:
+      operationId: updateOceanClusterAWS
+      summary: Update Ocean Cluster AWS
+      description: Update an existing Ocean cluster configuration.
+      tags:
+        - Ocean AWS
+      parameters:
+        - name: clusterId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Ocean cluster updated
+    delete:
+      operationId: deleteOceanClusterAWS
+      summary: Delete Ocean Cluster AWS
+      description: Delete an Ocean cluster.
+      tags:
+        - Ocean AWS
+      parameters:
+        - name: clusterId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ocean cluster deleted
+  /ocean/aws/k8s/cluster/{clusterId}/costs:
+    get:
+      operationId: getOceanClusterCostsAWS
+      summary: Get Ocean Cluster Costs AWS
+      description: Retrieve cost breakdown and savings analysis for an Ocean cluster.
+      tags:
+        - Ocean AWS
+      parameters:
+        - name: clusterId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startTime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Ocean cluster cost data
+  /ocean/aws/k8s/cluster/{clusterId}/rightSizing/suggestions:
+    get:
+      operationId: getOceanRightsizingSuggestions
+      summary: Get Ocean Rightsizing Suggestions
+      description: Retrieve container rightsizing recommendations to optimize resource allocation and cost.
+      tags:
+        - Ocean Automatic Rightsizing
+      parameters:
+        - name: clusterId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rightsizing recommendations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/RightsizingRecommendation'
+  /azure/compute/elastigroup:
+    get:
+      operationId: listElastigroupsAzure
+      summary: List Elastigroups Azure
+      description: Retrieve all Elastigroup instances on Microsoft Azure.
+      tags:
+        - Elastigroup Azure Spot VMs
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of Azure Elastigroups
+    post:
+      operationId: createElastigroupAzure
+      summary: Create Elastigroup Azure
+      description: Create a new Elastigroup for Azure Spot VMs.
+      tags:
+        - Elastigroup Azure Spot VMs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Azure Elastigroup created
+  /azure/compute/elastigroup/{groupId}:
+    get:
+      operationId: getElastigroupAzure
+      summary: Get Elastigroup Azure
+      description: Retrieve a specific Azure Elastigroup by ID.
+      tags:
+        - Elastigroup Azure Spot VMs
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Azure Elastigroup details
+    put:
+      operationId: updateElastigroupAzure
+      summary: Update Elastigroup Azure
+      description: Update an Azure Elastigroup configuration.
+      tags:
+        - Elastigroup Azure Spot VMs
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Azure Elastigroup updated
+    delete:
+      operationId: deleteElastigroupAzure
+      summary: Delete Elastigroup Azure
+      description: Delete an Azure Elastigroup.
+      tags:
+        - Elastigroup Azure Spot VMs
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Azure Elastigroup deleted
+  /gcp/gce/group:
+    get:
+      operationId: listElastigroupsGCP
+      summary: List Elastigroups GCP
+      description: Retrieve all Elastigroup instances on Google Cloud Platform.
+      tags:
+        - Elastigroup GCP
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of GCP Elastigroups
+    post:
+      operationId: createElastigroupGCP
+      summary: Create Elastigroup GCP
+      description: Create a new Elastigroup for Google Cloud Preemptible VMs.
+      tags:
+        - Elastigroup GCP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: GCP Elastigroup created
+  /gcp/gce/group/{groupId}:
+    get:
+      operationId: getElastigroupGCP
+      summary: Get Elastigroup GCP
+      description: Retrieve a specific GCP Elastigroup by ID.
+      tags:
+        - Elastigroup GCP
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GCP Elastigroup details
+    put:
+      operationId: updateElastigroupGCP
+      summary: Update Elastigroup GCP
+      description: Update a GCP Elastigroup configuration.
+      tags:
+        - Elastigroup GCP
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: GCP Elastigroup updated
+    delete:
+      operationId: deleteElastigroupGCP
+      summary: Delete Elastigroup GCP
+      description: Delete a GCP Elastigroup.
+      tags:
+        - Elastigroup GCP
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GCP Elastigroup deleted
+  /setup/account:
+    get:
+      operationId: listAccounts
+      summary: List Accounts
+      description: Retrieve all Spot accounts associated with the authenticated organization.
+      tags:
+        - Audit Service
+      responses:
+        '200':
+          description: List of Spot accounts
+    post:
+      operationId: createAccount
+      summary: Create Account
+      description: Create a new Spot account for a cloud provider.
+      tags:
+        - Audit Service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    providerExternalId:
+                      type: string
+      responses:
+        '200':
+          description: Account created
+  /setup/account/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Get Account
+      description: Retrieve details for a specific Spot account.
+      tags:
+        - Audit Service
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account details
+    put:
+      operationId: updateAccount
+      summary: Update Account
+      description: Update account configuration.
+      tags:
+        - Audit Service
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Account updated
+    delete:
+      operationId: deleteAccount
+      summary: Delete Account
+      description: Delete a Spot account.
+      tags:
+        - Audit Service
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account deleted
+  /setup/user/token:
+    post:
+      operationId: createApiToken
+      summary: Create API Token
+      description: Create a new API access token for authenticating Spot API requests.
+      tags:
+        - Create an API Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    tokenType:
+                      type: string
+                      enum: [permanent, temporary]
+      responses:
+        '200':
+          description: API token created
+  /audit/log:
+    get:
+      operationId: getAuditLog
+      summary: Get Audit Log
+      description: Retrieve audit log events for account activity and API calls.
+      tags:
+        - Audit Service
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: resourceType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: Audit log events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/AuditEvent'
+  /insights/summary:
+    get:
+      operationId: getCostSummary
+      summary: Get Cost Summary
+      description: Retrieve a summary of cloud cost savings achieved through Spot optimization.
+      tags:
+        - Insights Service
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Cost savings summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostSavings'
+  /events:
+    get:
+      operationId: listEvents
+      summary: List Events
+      description: Retrieve notification events for resources in the Spot account.
+      tags:
+        - Notification Subscription Service
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fromDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: List of events
+  /healthCheck:
+    get:
+      operationId: healthCheck
+      summary: Health Check
+      description: Verify that the Spot API is operational.
+      tags:
+        - Health Check Service
+      responses:
+        '200':
+          description: API is healthy

@@ -1,0 +1,191 @@
+{
+  "info": {
+    "_postman_id": "25a37525-ece8-42fe-9b73-801b73c233ba",
+    "name": "Spot by NetApp Audit Service Ocean Automatic Rightsizing API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:49.000Z",
+    "updatedAt": "2026-07-28T03:00:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-25a37525-ece8-42fe-9b73-801b73c233ba"
+  },
+  "item": [
+    {
+      "name": "ocean",
+      "item": [
+        {
+          "name": "aws",
+          "item": [
+            {
+              "name": "k8s",
+              "item": [
+                {
+                  "name": "cluster",
+                  "item": [
+                    {
+                      "name": "{clusterId}",
+                      "item": [
+                        {
+                          "name": "rightSizing",
+                          "item": [
+                            {
+                              "name": "suggestions",
+                              "item": [
+                                {
+                                  "name": "Get Ocean Rightsizing Suggestions",
+                                  "id": "bdcef830-1aac-433b-8992-7422aaece6dc",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId/rightSizing/suggestions",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "ocean",
+                                        "aws",
+                                        "k8s",
+                                        "cluster",
+                                        ":clusterId",
+                                        "rightSizing",
+                                        "suggestions"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "591c0341-2a23-4bce-8ff5-bef0677aaab2",
+                                          "key": "clusterId",
+                                          "value": "<string>",
+                                          "description": "(Required) "
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve container rightsizing recommendations to optimize resource allocation and cost."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "b3e15312-b3cb-4218-b03e-e7b2db1bd750",
+                                      "name": "Rightsizing recommendations",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/ocean/aws/k8s/cluster/:clusterId/rightSizing/suggestions",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "ocean",
+                                            "aws",
+                                            "k8s",
+                                            "cluster",
+                                            ":clusterId",
+                                            "rightSizing",
+                                            "suggestions"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "clusterId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"response\": {\n    \"items\": [\n      {\n        \"resourceId\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"currentSize\": \"<string>\",\n        \"recommendedSize\": \"<string>\",\n        \"estimatedMonthlySavings\": \"<float>\",\n        \"justification\": \"<string>\"\n      },\n      {\n        \"resourceId\": \"<string>\",\n        \"resourceType\": \"<string>\",\n        \"currentSize\": \"<string>\",\n        \"recommendedSize\": \"<string>\",\n        \"estimatedMonthlySavings\": \"<float>\",\n        \"justification\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                      "createdAt": "2026-07-28T03:00:50.000Z",
+                                      "updatedAt": "2026-07-28T03:00:50.000Z",
+                                      "uid": "35240-b3e15312-b3cb-4218-b03e-e7b2db1bd750"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T03:00:50.000Z",
+                                  "updatedAt": "2026-07-28T03:00:50.000Z",
+                                  "uid": "35240-bdcef830-1aac-433b-8992-7422aaece6dc"
+                                }
+                              ],
+                              "id": "a28b6876-e217-44b7-bc79-f75182f59110",
+                              "createdAt": "2026-07-28T03:00:50.000Z",
+                              "updatedAt": "2026-07-28T03:00:50.000Z",
+                              "uid": "35240-a28b6876-e217-44b7-bc79-f75182f59110"
+                            }
+                          ],
+                          "id": "1ad4ed58-4361-4cde-b7f4-1cf89f39eef2",
+                          "createdAt": "2026-07-28T03:00:50.000Z",
+                          "updatedAt": "2026-07-28T03:00:50.000Z",
+                          "uid": "35240-1ad4ed58-4361-4cde-b7f4-1cf89f39eef2"
+                        }
+                      ],
+                      "id": "036031ce-881b-4825-a603-913fb6d30714",
+                      "createdAt": "2026-07-28T03:00:50.000Z",
+                      "updatedAt": "2026-07-28T03:00:50.000Z",
+                      "uid": "35240-036031ce-881b-4825-a603-913fb6d30714"
+                    }
+                  ],
+                  "id": "df0853a0-8b76-4de3-91a0-954f40ba55d6",
+                  "createdAt": "2026-07-28T03:00:50.000Z",
+                  "updatedAt": "2026-07-28T03:00:50.000Z",
+                  "uid": "35240-df0853a0-8b76-4de3-91a0-954f40ba55d6"
+                }
+              ],
+              "id": "0db099dc-bbb1-4329-961f-64fe4f25db37",
+              "createdAt": "2026-07-28T03:00:50.000Z",
+              "updatedAt": "2026-07-28T03:00:50.000Z",
+              "uid": "35240-0db099dc-bbb1-4329-961f-64fe4f25db37"
+            }
+          ],
+          "id": "6c730a22-70d7-4c4d-a2f3-c90d286c5835",
+          "createdAt": "2026-07-28T03:00:50.000Z",
+          "updatedAt": "2026-07-28T03:00:50.000Z",
+          "uid": "35240-6c730a22-70d7-4c4d-a2f3-c90d286c5835"
+        }
+      ],
+      "id": "bd700af5-a908-4eb8-b373-d2924ed63cfd",
+      "createdAt": "2026-07-28T03:00:50.000Z",
+      "updatedAt": "2026-07-28T03:00:50.000Z",
+      "uid": "35240-bd700af5-a908-4eb8-b373-d2924ed63cfd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

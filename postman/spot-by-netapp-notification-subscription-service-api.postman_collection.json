@@ -1,0 +1,126 @@
+{
+  "info": {
+    "_postman_id": "b320f631-aa26-4cf7-aeaa-f70ad43402a7",
+    "name": "Spot by NetApp Audit Service Notification Subscription Service API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:48.000Z",
+    "updatedAt": "2026-07-28T03:00:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b320f631-aa26-4cf7-aeaa-f70ad43402a7"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "List Events",
+          "id": "0e0a1ad1-55ff-4c2d-8ab3-3cb4499eb0e0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/events?accountId=<string>&resourceId=<string>&fromDate=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "resourceId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "fromDate",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Retrieve notification events for resources in the Spot account."
+          },
+          "response": [
+            {
+              "id": "df59feb0-6746-4920-97b4-0e754a7b9f1e",
+              "name": "List of events",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?accountId=<string>&resourceId=<string>&fromDate=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T03:00:49.000Z",
+              "updatedAt": "2026-07-28T03:00:49.000Z",
+              "uid": "35240-df59feb0-6746-4920-97b4-0e754a7b9f1e"
+            }
+          ],
+          "createdAt": "2026-07-28T03:00:49.000Z",
+          "updatedAt": "2026-07-28T03:00:49.000Z",
+          "uid": "35240-0e0a1ad1-55ff-4c2d-8ab3-3cb4499eb0e0"
+        }
+      ],
+      "id": "c2556774-2d75-4634-b3ae-4fe59c48817f",
+      "createdAt": "2026-07-28T03:00:49.000Z",
+      "updatedAt": "2026-07-28T03:00:49.000Z",
+      "uid": "35240-c2556774-2d75-4634-b3ae-4fe59c48817f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "4977a5e4-dccb-4f87-ac8c-ffd93e4a4d06",
+    "name": "Spot by NetApp Audit Service Create an API Token API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:42.000Z",
+    "updatedAt": "2026-07-28T03:00:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4977a5e4-dccb-4f87-ac8c-ffd93e4a4d06"
+  },
+  "item": [
+    {
+      "name": "setup",
+      "item": [
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "token",
+              "item": [
+                {
+                  "name": "Create API Token",
+                  "id": "7d364f99-42be-43a0-aacc-9fc7fddc5fb3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"token\": {\n    \"name\": \"<string>\",\n    \"tokenType\": \"temporary\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/setup/user/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "setup",
+                        "user",
+                        "token"
+                      ]
+                    },
+                    "description": "Create a new API access token for authenticating Spot API requests."
+                  },
+                  "response": [
+                    {
+                      "id": "b975702e-4ccf-497a-a2b9-e539b2a93409",
+                      "name": "API token created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"token\": {\n    \"name\": \"<string>\",\n    \"tokenType\": \"temporary\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/setup/user/token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "setup",
+                            "user",
+                            "token"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:43.000Z",
+                      "updatedAt": "2026-07-28T03:00:43.000Z",
+                      "uid": "35240-b975702e-4ccf-497a-a2b9-e539b2a93409"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:43.000Z",
+                  "updatedAt": "2026-07-28T03:00:43.000Z",
+                  "uid": "35240-7d364f99-42be-43a0-aacc-9fc7fddc5fb3"
+                }
+              ],
+              "id": "b42dcdd1-d959-410a-b9a2-6882010e9b75",
+              "createdAt": "2026-07-28T03:00:43.000Z",
+              "updatedAt": "2026-07-28T03:00:43.000Z",
+              "uid": "35240-b42dcdd1-d959-410a-b9a2-6882010e9b75"
+            }
+          ],
+          "id": "2139b5d7-a9fe-476c-9615-7ced25b789d8",
+          "createdAt": "2026-07-28T03:00:43.000Z",
+          "updatedAt": "2026-07-28T03:00:43.000Z",
+          "uid": "35240-2139b5d7-a9fe-476c-9615-7ced25b789d8"
+        }
+      ],
+      "id": "bd548c96-d227-4003-adc5-cadc2b21039b",
+      "createdAt": "2026-07-28T03:00:43.000Z",
+      "updatedAt": "2026-07-28T03:00:43.000Z",
+      "uid": "35240-bd548c96-d227-4003-adc5-cadc2b21039b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

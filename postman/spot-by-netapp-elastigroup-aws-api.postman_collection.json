@@ -1,0 +1,1088 @@
+{
+  "info": {
+    "_postman_id": "98f8c0cb-b327-43e1-8553-3b3551780b23",
+    "name": "Spot by NetApp Audit Service Elastigroup AWS API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:43.000Z",
+    "updatedAt": "2026-07-28T03:00:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-98f8c0cb-b327-43e1-8553-3b3551780b23"
+  },
+  "item": [
+    {
+      "name": "aws",
+      "item": [
+        {
+          "name": "ec2",
+          "item": [
+            {
+              "name": "group",
+              "item": [
+                {
+                  "name": "{groupId}",
+                  "item": [
+                    {
+                      "name": "scale",
+                      "item": [
+                        {
+                          "name": "up",
+                          "item": [
+                            {
+                              "name": "Scale Up Elastigroup AWS",
+                              "id": "c8c251d6-564f-4518-acee-cdd3f18ab690",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/aws/ec2/group/:groupId/scale/up?adjustment=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "aws",
+                                    "ec2",
+                                    "group",
+                                    ":groupId",
+                                    "scale",
+                                    "up"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Number of instances to add",
+                                      "key": "adjustment",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "084eb53b-c44c-486a-9426-bdac78b6d284",
+                                      "key": "groupId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Scale up an Elastigroup by adding capacity."
+                              },
+                              "response": [
+                                {
+                                  "id": "29a47daf-5564-44fe-ab40-bdc844eed809",
+                                  "name": "Scale up initiated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/aws/ec2/group/:groupId/scale/up?adjustment=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "aws",
+                                        "ec2",
+                                        "group",
+                                        ":groupId",
+                                        "scale",
+                                        "up"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Number of instances to add",
+                                          "key": "adjustment",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "groupId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:00:44.000Z",
+                                  "updatedAt": "2026-07-28T03:00:44.000Z",
+                                  "uid": "35240-29a47daf-5564-44fe-ab40-bdc844eed809"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:00:44.000Z",
+                              "updatedAt": "2026-07-28T03:00:44.000Z",
+                              "uid": "35240-c8c251d6-564f-4518-acee-cdd3f18ab690"
+                            }
+                          ],
+                          "id": "0d2dd15d-ebf2-437a-8b78-184112a1f0d5",
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-0d2dd15d-ebf2-437a-8b78-184112a1f0d5"
+                        },
+                        {
+                          "name": "down",
+                          "item": [
+                            {
+                              "name": "Scale Down Elastigroup AWS",
+                              "id": "833547ca-c7bf-4976-8b16-1104475bdcab",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/aws/ec2/group/:groupId/scale/down?adjustment=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "aws",
+                                    "ec2",
+                                    "group",
+                                    ":groupId",
+                                    "scale",
+                                    "down"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Number of instances to remove",
+                                      "key": "adjustment",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ea73bb39-92d2-4d54-87f0-ae51141617df",
+                                      "key": "groupId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Scale down an Elastigroup by removing capacity."
+                              },
+                              "response": [
+                                {
+                                  "id": "0eeac445-c3b4-48c8-8486-2d90b4c19f55",
+                                  "name": "Scale down initiated",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/aws/ec2/group/:groupId/scale/down?adjustment=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "aws",
+                                        "ec2",
+                                        "group",
+                                        ":groupId",
+                                        "scale",
+                                        "down"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Number of instances to remove",
+                                          "key": "adjustment",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "groupId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "text",
+                                  "header": [],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": null,
+                                  "createdAt": "2026-07-28T03:00:44.000Z",
+                                  "updatedAt": "2026-07-28T03:00:44.000Z",
+                                  "uid": "35240-0eeac445-c3b4-48c8-8486-2d90b4c19f55"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:00:44.000Z",
+                              "updatedAt": "2026-07-28T03:00:44.000Z",
+                              "uid": "35240-833547ca-c7bf-4976-8b16-1104475bdcab"
+                            }
+                          ],
+                          "id": "c47d9b8a-9ada-4b00-b310-49a22afb63bd",
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-c47d9b8a-9ada-4b00-b310-49a22afb63bd"
+                        }
+                      ],
+                      "id": "520daf6b-90ad-4ac4-881f-12a7ee4b652b",
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-520daf6b-90ad-4ac4-881f-12a7ee4b652b"
+                    },
+                    {
+                      "name": "status",
+                      "item": [
+                        {
+                          "name": "Get Elastigroup Status AWS",
+                          "id": "b8f776bf-8b70-4f4a-902a-8f7356717a40",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId/status",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId",
+                                "status"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "c3325a1d-29fa-4387-a9bc-fef1c537a8a8",
+                                  "key": "groupId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the current status and instance details for an Elastigroup."
+                          },
+                          "response": [
+                            {
+                              "id": "8d9b52f0-97db-407b-970b-83ea0ff92e2a",
+                              "name": "Elastigroup status",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/aws/ec2/group/:groupId/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "aws",
+                                    "ec2",
+                                    "group",
+                                    ":groupId",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:00:44.000Z",
+                              "updatedAt": "2026-07-28T03:00:44.000Z",
+                              "uid": "35240-8d9b52f0-97db-407b-970b-83ea0ff92e2a"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-b8f776bf-8b70-4f4a-902a-8f7356717a40"
+                        }
+                      ],
+                      "id": "959f98e5-8082-44b3-a096-12845537af25",
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-959f98e5-8082-44b3-a096-12845537af25"
+                    },
+                    {
+                      "name": "costs",
+                      "item": [
+                        {
+                          "name": "Get Elastigroup Costs AWS",
+                          "id": "a0715a4d-6d9d-4944-9294-d28337a10121",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId/costs?toDate=<date>&fromDate=<date>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId",
+                                "costs"
+                              ],
+                              "query": [
+                                {
+                                  "key": "toDate",
+                                  "value": "<date>"
+                                },
+                                {
+                                  "key": "fromDate",
+                                  "value": "<date>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "16646a48-006d-4112-8880-6a4e823b39d1",
+                                  "key": "groupId",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieve cost analysis and savings for an Elastigroup."
+                          },
+                          "response": [
+                            {
+                              "id": "b54276ff-22a2-4540-a17f-06f0ce0bf097",
+                              "name": "Cost data",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/aws/ec2/group/:groupId/costs?toDate=<date>&fromDate=<date>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "aws",
+                                    "ec2",
+                                    "group",
+                                    ":groupId",
+                                    "costs"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "toDate",
+                                      "value": "<date>"
+                                    },
+                                    {
+                                      "key": "fromDate",
+                                      "value": "<date>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "groupId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T03:00:44.000Z",
+                              "updatedAt": "2026-07-28T03:00:44.000Z",
+                              "uid": "35240-b54276ff-22a2-4540-a17f-06f0ce0bf097"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-a0715a4d-6d9d-4944-9294-d28337a10121"
+                        }
+                      ],
+                      "id": "b0d1d1ba-7ff4-4a51-8223-36aca3873206",
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-b0d1d1ba-7ff4-4a51-8223-36aca3873206"
+                    },
+                    {
+                      "name": "Get Elastigroup AWS",
+                      "id": "2ae2edba-d27d-4a8d-974c-1d28b600bf42",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0d745a21-14a0-452d-ac5c-fc9e58858e00",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) Elastigroup identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific Elastigroup by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "146cbbdb-5918-4fb3-b6c7-28640d332f22",
+                          "name": "Elastigroup details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-146cbbdb-5918-4fb3-b6c7-28640d332f22"
+                        },
+                        {
+                          "id": "f3e45a72-c353-4c52-a318-eb7938b35ef1",
+                          "name": "Not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-f3e45a72-c353-4c52-a318-eb7938b35ef1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-2ae2edba-d27d-4a8d-974c-1d28b600bf42"
+                    },
+                    {
+                      "name": "Update Elastigroup AWS",
+                      "id": "c598a961-c03c-4a0e-bf4d-49cfbce92684",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ea539ad5-37ce-4ed3-89f3-9d5cccd3cc18",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update an existing Elastigroup configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "4fb46f18-177e-40f3-98fb-50dd395e8826",
+                          "name": "Elastigroup updated",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-4fb46f18-177e-40f3-98fb-50dd395e8826"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-c598a961-c03c-4a0e-bf4d-49cfbce92684"
+                    },
+                    {
+                      "name": "Delete Elastigroup AWS",
+                      "id": "645a9a26-40ae-4a19-8dc5-6070975215ba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b3af0750-fe5a-4c84-b9b0-f00048f56200",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Delete an Elastigroup and all associated resources."
+                      },
+                      "response": [
+                        {
+                          "id": "3d5b8836-bd22-4ce4-83cb-3a42d5c8d578",
+                          "name": "Elastigroup deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/aws/ec2/group/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "aws",
+                                "ec2",
+                                "group",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:00:44.000Z",
+                          "updatedAt": "2026-07-28T03:00:44.000Z",
+                          "uid": "35240-3d5b8836-bd22-4ce4-83cb-3a42d5c8d578"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-645a9a26-40ae-4a19-8dc5-6070975215ba"
+                    }
+                  ],
+                  "id": "dae7d08f-4500-409f-a7ec-a1a7adc21b5f",
+                  "createdAt": "2026-07-28T03:00:44.000Z",
+                  "updatedAt": "2026-07-28T03:00:44.000Z",
+                  "uid": "35240-dae7d08f-4500-409f-a7ec-a1a7adc21b5f"
+                },
+                {
+                  "name": "List Elastigroups AWS",
+                  "id": "b0d1572c-6644-4440-a97c-237b9da7629b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/aws/ec2/group?accountId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "aws",
+                        "ec2",
+                        "group"
+                      ],
+                      "query": [
+                        {
+                          "description": "Spot Account ID to filter by",
+                          "key": "accountId",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve all Elastigroup instances for the authenticated account on AWS."
+                  },
+                  "response": [
+                    {
+                      "id": "e92ce033-1e4d-41ea-9e5c-c3b833c732cb",
+                      "name": "List of Elastigroups",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group?accountId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group"
+                          ],
+                          "query": [
+                            {
+                              "description": "Spot Account ID to filter by",
+                              "key": "accountId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"request\": {},\n  \"response\": {\n    \"items\": [\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"region\": \"<string>\",\n        \"capacity\": {\n          \"minimum\": \"<integer>\",\n          \"maximum\": \"<integer>\",\n          \"target\": \"<integer>\"\n        },\n        \"compute\": {\n          \"instanceTypes\": {\n            \"ondemand\": \"<string>\",\n            \"spot\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        \"strategy\": {\n          \"risk\": \"<integer>\",\n          \"onDemandCount\": \"<integer>\",\n          \"availabilityVsCost\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"description\": \"<string>\",\n        \"region\": \"<string>\",\n        \"capacity\": {\n          \"minimum\": \"<integer>\",\n          \"maximum\": \"<integer>\",\n          \"target\": \"<integer>\"\n        },\n        \"compute\": {\n          \"instanceTypes\": {\n            \"ondemand\": \"<string>\",\n            \"spot\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        },\n        \"strategy\": {\n          \"risk\": \"<integer>\",\n          \"onDemandCount\": \"<integer>\",\n          \"availabilityVsCost\": \"<string>\"\n        }\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-e92ce033-1e4d-41ea-9e5c-c3b833c732cb"
+                    },
+                    {
+                      "id": "aff7ac2e-51d0-44f6-993e-8c657a072384",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group?accountId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group"
+                          ],
+                          "query": [
+                            {
+                              "description": "Spot Account ID to filter by",
+                              "key": "accountId",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-aff7ac2e-51d0-44f6-993e-8c657a072384"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:44.000Z",
+                  "updatedAt": "2026-07-28T03:00:44.000Z",
+                  "uid": "35240-b0d1572c-6644-4440-a97c-237b9da7629b"
+                },
+                {
+                  "name": "Create Elastigroup AWS",
+                  "id": "6e5b3128-7267-4c9d-a84a-daa686036be4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"group\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"region\": \"<string>\",\n    \"capacity\": {\n      \"minimum\": \"<integer>\",\n      \"maximum\": \"<integer>\",\n      \"target\": \"<integer>\"\n    },\n    \"compute\": {\n      \"instanceTypes\": {\n        \"ondemand\": \"<string>\",\n        \"spot\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"strategy\": {\n      \"risk\": \"<integer>\",\n      \"onDemandCount\": \"<integer>\",\n      \"availabilityVsCost\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/aws/ec2/group",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "aws",
+                        "ec2",
+                        "group"
+                      ]
+                    },
+                    "description": "Create a new Elastigroup for intelligent auto-scaling on AWS with Spot instances."
+                  },
+                  "response": [
+                    {
+                      "id": "5d5bce62-2352-4f9e-aea7-d57db1d96550",
+                      "name": "Elastigroup created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"group\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"region\": \"<string>\",\n    \"capacity\": {\n      \"minimum\": \"<integer>\",\n      \"maximum\": \"<integer>\",\n      \"target\": \"<integer>\"\n    },\n    \"compute\": {\n      \"instanceTypes\": {\n        \"ondemand\": \"<string>\",\n        \"spot\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"strategy\": {\n      \"risk\": \"<integer>\",\n      \"onDemandCount\": \"<integer>\",\n      \"availabilityVsCost\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-5d5bce62-2352-4f9e-aea7-d57db1d96550"
+                    },
+                    {
+                      "id": "7fb9fc02-bd9a-4a30-a14c-391374c8297e",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"group\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"region\": \"<string>\",\n    \"capacity\": {\n      \"minimum\": \"<integer>\",\n      \"maximum\": \"<integer>\",\n      \"target\": \"<integer>\"\n    },\n    \"compute\": {\n      \"instanceTypes\": {\n        \"ondemand\": \"<string>\",\n        \"spot\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"strategy\": {\n      \"risk\": \"<integer>\",\n      \"onDemandCount\": \"<integer>\",\n      \"availabilityVsCost\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/aws/ec2/group",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "aws",
+                            "ec2",
+                            "group"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:00:44.000Z",
+                      "updatedAt": "2026-07-28T03:00:44.000Z",
+                      "uid": "35240-7fb9fc02-bd9a-4a30-a14c-391374c8297e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:00:44.000Z",
+                  "updatedAt": "2026-07-28T03:00:44.000Z",
+                  "uid": "35240-6e5b3128-7267-4c9d-a84a-daa686036be4"
+                }
+              ],
+              "id": "9f5dbc40-aeb7-4db5-87c8-24b81a60dc65",
+              "createdAt": "2026-07-28T03:00:44.000Z",
+              "updatedAt": "2026-07-28T03:00:44.000Z",
+              "uid": "35240-9f5dbc40-aeb7-4db5-87c8-24b81a60dc65"
+            }
+          ],
+          "id": "10c57028-cf3c-4ca0-8103-661388250337",
+          "createdAt": "2026-07-28T03:00:44.000Z",
+          "updatedAt": "2026-07-28T03:00:44.000Z",
+          "uid": "35240-10c57028-cf3c-4ca0-8103-661388250337"
+        }
+      ],
+      "id": "405b915f-4594-4c17-b049-356778a21e70",
+      "createdAt": "2026-07-28T03:00:44.000Z",
+      "updatedAt": "2026-07-28T03:00:44.000Z",
+      "uid": "35240-405b915f-4594-4c17-b049-356778a21e70"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}

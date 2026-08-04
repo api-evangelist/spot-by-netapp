@@ -1,0 +1,151 @@
+{
+  "info": {
+    "_postman_id": "661b5dd7-730c-4caa-95c7-aae90982a033",
+    "name": "Spot by NetApp Audit Service Insights Service API",
+    "description": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:00:47.000Z",
+    "updatedAt": "2026-07-28T03:00:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-661b5dd7-730c-4caa-95c7-aae90982a033"
+  },
+  "item": [
+    {
+      "name": "insights",
+      "item": [
+        {
+          "name": "summary",
+          "item": [
+            {
+              "name": "Get Cost Summary",
+              "id": "50e0b6e9-9a44-4cc8-a123-1edbfd02e64a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/insights/summary?accountId=<string>&fromDate=<date>&toDate=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "insights",
+                    "summary"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    }
+                  ]
+                },
+                "description": "Retrieve a summary of cloud cost savings achieved through Spot optimization."
+              },
+              "response": [
+                {
+                  "id": "527ad481-204f-44ce-9627-7b3662c430ae",
+                  "name": "Cost savings summary",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/insights/summary?accountId=<string>&fromDate=<date>&toDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "insights",
+                        "summary"
+                      ],
+                      "query": [
+                        {
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "fromDate",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "toDate",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"actualCost\": \"<float>\",\n  \"potentialCost\": \"<float>\",\n  \"savings\": \"<float>\",\n  \"savingsPercentage\": \"<float>\",\n  \"currency\": \"USD\"\n}",
+                  "createdAt": "2026-07-28T03:00:48.000Z",
+                  "updatedAt": "2026-07-28T03:00:48.000Z",
+                  "uid": "35240-527ad481-204f-44ce-9627-7b3662c430ae"
+                }
+              ],
+              "createdAt": "2026-07-28T03:00:48.000Z",
+              "updatedAt": "2026-07-28T03:00:48.000Z",
+              "uid": "35240-50e0b6e9-9a44-4cc8-a123-1edbfd02e64a"
+            }
+          ],
+          "id": "30bb4dee-bcae-4857-8741-40dae6d85f40",
+          "createdAt": "2026-07-28T03:00:48.000Z",
+          "updatedAt": "2026-07-28T03:00:48.000Z",
+          "uid": "35240-30bb4dee-bcae-4857-8741-40dae6d85f40"
+        }
+      ],
+      "id": "3a9f2ee8-4b53-4db1-8633-6c6b011788f7",
+      "createdAt": "2026-07-28T03:00:48.000Z",
+      "updatedAt": "2026-07-28T03:00:48.000Z",
+      "uid": "35240-3a9f2ee8-4b53-4db1-8633-6c6b011788f7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.spotinst.io"
+    }
+  ]
+}
