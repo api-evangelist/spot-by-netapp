@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp Audit Service Ocean Automatic Rightsizing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ocean Automatic Rightsizing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Ocean Rightsizing Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId/rightSizing/suggestions",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve container rightsizing recommendations to optimize resource allocation and cost."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

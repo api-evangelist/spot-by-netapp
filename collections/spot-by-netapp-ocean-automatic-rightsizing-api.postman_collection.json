@@ -1,0 +1,147 @@
+{
+  "item": [
+    {
+      "id": "db9c4175-7a63-49f9-ba64-44cb2e101760",
+      "name": "Ocean Automatic Rightsizing",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a11af622-3634-4f9a-ac5c-14c94476b832",
+          "name": "Get Ocean Rightsizing Suggestions",
+          "request": {
+            "name": "Get Ocean Rightsizing Suggestions",
+            "description": {
+              "content": "Retrieve container rightsizing recommendations to optimize resource allocation and cost.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ocean",
+                "aws",
+                "k8s",
+                "cluster",
+                ":clusterId",
+                "rightSizing",
+                "suggestions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clusterId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92d1df8f-a9e0-4735-b2e4-c4e10223e893",
+              "name": "Rightsizing recommendations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ocean",
+                    "aws",
+                    "k8s",
+                    "cluster",
+                    ":clusterId",
+                    "rightSizing",
+                    "suggestions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clusterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"items\": [\n      {\n        \"resourceId\": \"string\",\n        \"resourceType\": \"string\",\n        \"currentSize\": \"string\",\n        \"recommendedSize\": \"string\",\n        \"estimatedMonthlySavings\": 4773.470219955094,\n        \"justification\": \"string\"\n      },\n      {\n        \"resourceId\": \"string\",\n        \"resourceType\": \"string\",\n        \"currentSize\": \"string\",\n        \"recommendedSize\": \"string\",\n        \"estimatedMonthlySavings\": 6191.431391310987,\n        \"justification\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotinst.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "94ff9127-1cae-4bdb-b9d2-fbd2d81a98a1",
+    "name": "Spot by NetApp Audit Service Ocean Automatic Rightsizing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+      "type": "text/plain"
+    }
+  }
+}

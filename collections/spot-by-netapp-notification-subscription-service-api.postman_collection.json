@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "f37d48b8-3f36-4f4a-a5ae-371785f99ed4",
+      "name": "Notification Subscription Service",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e3e751d-768a-4e24-a0a9-233ea8967c82",
+          "name": "List Events",
+          "request": {
+            "name": "List Events",
+            "description": {
+              "content": "Retrieve notification events for resources in the Spot account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51852e7e-0230-4e4c-9aa2-ff4a7fc302e2",
+              "name": "List of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotinst.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1a858f7-88d1-4dda-8bb5-1894a24ee725",
+    "name": "Spot by NetApp Audit Service Notification Subscription Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+      "type": "text/plain"
+    }
+  }
+}

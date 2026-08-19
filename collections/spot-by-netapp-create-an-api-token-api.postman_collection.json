@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "efa60890-4eb9-49cb-8cff-c8c281183a87",
+      "name": "Create an API Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d415d4d-ca56-42ea-b8f4-4bef896715d0",
+          "name": "Create API Token",
+          "request": {
+            "name": "Create API Token",
+            "description": {
+              "content": "Create a new API access token for authenticating Spot API requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "setup",
+                "user",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": {\n    \"name\": \"<string>\",\n    \"tokenType\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1c7ff13-734a-49e1-acd2-2c9972e6e890",
+              "name": "API token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "setup",
+                    "user",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": {\n    \"name\": \"<string>\",\n    \"tokenType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotinst.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72cab395-8325-491e-9e26-968fc9dddadb",
+    "name": "Spot by NetApp Audit Service Create an API Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spot by NetApp (formerly Spot by Flexera, originally Spotinst) is a cloud infrastructure optimization platform providing automated cost optimization, scaling, and management for cloud workloads across AWS, Azure, and GCP. The API enables management of Elastigroup (intelligent auto-scaling groups), Ocean (container and Kubernetes cost optimization), Stateful Nodes, EMR Scaler, and cloud security posture through a unified REST interface. Supports Bearer Token authentication against the Spot platform API.\n\nContact Support:\n Email: support@spot.io",
+      "type": "text/plain"
+    }
+  }
+}

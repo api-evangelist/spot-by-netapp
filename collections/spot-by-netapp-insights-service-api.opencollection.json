@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp Audit Service Insights Service API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cost Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/insights/summary",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a summary of cloud cost savings achieved through Spot optimization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

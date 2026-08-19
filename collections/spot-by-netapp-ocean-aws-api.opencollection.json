@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp Audit Service Ocean AWS API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ocean AWS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Ocean Clusters AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all Ocean clusters for Kubernetes on AWS."
+        },
+        {
+          "info": {
+            "name": "Create Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Ocean cluster for Kubernetes cost optimization on AWS."
+        },
+        {
+          "info": {
+            "name": "Get Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific Ocean cluster."
+        },
+        {
+          "info": {
+            "name": "Update Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing Ocean cluster configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Ocean Cluster AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an Ocean cluster."
+        },
+        {
+          "info": {
+            "name": "Get Ocean Cluster Costs AWS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/ocean/aws/k8s/cluster/:clusterId/costs",
+            "params": [
+              {
+                "name": "clusterId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve cost breakdown and savings analysis for an Ocean cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

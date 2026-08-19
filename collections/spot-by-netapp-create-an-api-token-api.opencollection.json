@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp Audit Service Create an API Token API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create an API Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create API Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotinst.io/setup/user/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new API access token for authenticating Spot API requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

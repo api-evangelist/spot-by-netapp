@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spot by NetApp Audit Service Notification Subscription Service API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Subscription Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotinst.io/events",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resourceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve notification events for resources in the Spot account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
