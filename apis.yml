@@ -36,7 +36,7 @@ tags:
 created: '2026-03-27'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/spot-by-netapp/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: spot-by-netapp:spot-by-netapp-audit-service-api
   name: Spot by NetApp Audit Service API
