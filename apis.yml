@@ -32,6 +32,15 @@ tags:
   - Azure
   - GCP
   - Cost Optimization
+  - Auto-Scaling
+tags_raw:
+  - Cloud Optimization
+  - FinOps
+  - Kubernetes
+  - AWS
+  - Azure
+  - GCP
+  - Cost Optimization
   - Auto Scaling
 created: '2026-03-27'
 modified: '2026-05-19'
