@@ -1,16 +1,7 @@
 {
   "provider": "spot-by-netapp",
   "sources": [
-    "spot-by-netapp-audit-service-api-openapi.yml",
-    "spot-by-netapp-create-an-api-token-api-openapi.yml",
-    "spot-by-netapp-elastigroup-aws-api-openapi.yml",
-    "spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml",
-    "spot-by-netapp-elastigroup-gcp-api-openapi.yml",
-    "spot-by-netapp-health-check-service-api-openapi.yml",
-    "spot-by-netapp-insights-service-api-openapi.yml",
-    "spot-by-netapp-notification-subscription-service-api-openapi.yml",
-    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml",
-    "spot-by-netapp-ocean-aws-api-openapi.yml"
+    "_original/spot-by-netapp-openapi.yml"
   ],
   "outputs": [
     "spot-by-netapp-audit-service-api-openapi.yml",
@@ -21,12 +12,37 @@
     "spot-by-netapp-health-check-service-api-openapi.yml",
     "spot-by-netapp-insights-service-api-openapi.yml",
     "spot-by-netapp-notification-subscription-service-api-openapi.yml",
-    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml",
-    "spot-by-netapp-ocean-aws-api-openapi.yml"
+    "spot-by-netapp-ocean-aws-api-openapi.yml",
+    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spot-by-netapp-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "spot-by-netapp-openapi.yml: declared missing tag: Audit Service",
+    "spot-by-netapp-openapi.yml: declared missing tag: Create an API Token",
+    "spot-by-netapp-openapi.yml: declared missing tag: Elastigroup AWS",
+    "spot-by-netapp-openapi.yml: declared missing tag: Elastigroup Azure Spot VMs",
+    "spot-by-netapp-openapi.yml: declared missing tag: Elastigroup GCP",
+    "spot-by-netapp-openapi.yml: declared missing tag: Health Check Service",
+    "spot-by-netapp-openapi.yml: declared missing tag: Insights Service",
+    "spot-by-netapp-openapi.yml: declared missing tag: Notification Subscription Service",
+    "spot-by-netapp-openapi.yml: declared missing tag: Ocean AWS",
+    "spot-by-netapp-openapi.yml: declared missing tag: Ocean Automatic Rightsizing",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spot-by-netapp-audit-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-create-an-api-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-elastigroup-aws-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-elastigroup-gcp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-health-check-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-insights-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-notification-subscription-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-ocean-automatic-rightsizing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spot-by-netapp-ocean-aws-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
