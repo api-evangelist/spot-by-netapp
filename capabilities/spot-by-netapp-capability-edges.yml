@@ -1,0 +1,62 @@
+slug: spot-by-netapp
+provider: Spot by NetApp
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Elastigroup AWS
+  spec_file: spot-by-netapp-elastigroup-aws-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.88
+  evidence: PUT /aws/ec2/group/{groupId}/scale/up  scaleUpElastigroupAWS; GET /aws/ec2/group/{groupId}/costs  getElastigroupCostsAWS
+  reason: Provisioning and scaling AWS EC2 compute groups with cost reporting — cloud compute infrastructure
+    management. BC-600.50 IT Infrastructure Management is the honest fit for this devtool/cloud-ops vendor.
+- tag: Elastigroup Azure Spot VMs
+  spec_file: spot-by-netapp-elastigroup-azure-spot-vms-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /azure/compute/elastigroup  createElastigroupAzure  Create Elastigroup Azure
+  reason: CRUD over Azure compute scaling groups — management of cloud compute infrastructure, i.e. IT
+    Infrastructure Management.
+- tag: Elastigroup GCP
+  spec_file: spot-by-netapp-elastigroup-gcp-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: POST /gcp/gce/group  createElastigroupGCP  Create Elastigroup GCP
+  reason: CRUD over GCP Compute Engine instance groups — cloud compute infrastructure provisioning and
+    management.
+- tag: Insights Service
+  spec_file: spot-by-netapp-insights-service-api-openapi.yml
+  capability_id: BC-600.80
+  capability_id_l1: BC-600
+  capability_name: IT Financial Management
+  confidence: 0.8
+  evidence: 'GET /insights/summary  getCostSummary  Get Cost Summary; schemas: CostSavings'
+  reason: Reports cloud cost and savings summaries — IT spend visibility and cost optimisation (IT Financial
+    Management). Single operation so some ambiguity, but CostSavings schema grounds it.
+- tag: Ocean AWS
+  spec_file: spot-by-netapp-ocean-aws-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: POST /ocean/aws/k8s/cluster  createOceanClusterAWS  Create Ocean Cluster AWS; GET /ocean/aws/k8s/cluster/{clusterId}/costs  getOceanClusterCostsAWS;
+    schema OceanCluster
+  reason: Operations create, update, delete and inspect Kubernetes/compute clusters on AWS — provisioning
+    and stewardship of cloud compute infrastructure, i.e. IT Infrastructure Management. The cost endpoint
+    is secondary to the cluster lifecycle CRUD that dominates the surface.
