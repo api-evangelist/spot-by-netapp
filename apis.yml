@@ -253,6 +253,12 @@ apis:
   - type: GitHub
     url: https://github.com/spotinst/openapi
 common:
+  - type: Plans
+    url: plans/spot-by-netapp-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/spot-by-netapp-rate-limits.yml
+  - type: FinOps
+    url: finops/spot-by-netapp-finops.yml
   - type: CapabilityMap
     url: capabilities/spot-by-netapp-capability-edges.yml
     name: Spot by NetApp Business Capability Map
